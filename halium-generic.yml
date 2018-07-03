@@ -1,0 +1,53 @@
+{{- $architecture := or .architecture "armhf" -}}
+{{ $suite :=  "buster" }}
+{{ $image := or .image (printf "debian-halium-%s-%s.tgz" $suite $architecture) }}
+{{ $repo := or .repo "https://debian-pm-tools.github.io/apt-repo" }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: debootstrap
+    suite: {{ $suite }}
+    components:
+      - main
+    mirror: https://deb.debian.org/debian
+    variant: minbase
+
+    # Add debian-pm repository and disable gpg check since we don't have a keyring yet.
+    # It's still pretty secure thanks to https
+  - action: run
+    chroot: true
+    command: echo "deb [trusted=yes] {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
+
+    # Install the keyring
+  - action: apt
+    packages:
+      - debian-pm-archive-keyring
+
+    # Turn on the gpg check again
+  - action: run
+    chroot: true
+    command: echo "deb {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
+
+  - action: apt
+    packages: 
+      - debian-pm-archive-keyring
+      - bash-completion
+      - gdb
+      - libc6-dbg
+      - libhybris-dev
+      - libhybris-test
+      - lxc
+      - lxc-android
+      - network-manager
+      - ofono
+      - ofono-scripts
+      - strace
+      - vim
+      - hybris-usb
+      - dropbear-bin
+      - dropbear-run
+    
+  - action: pack
+    file: {{ $image }}
+    compression: gz
