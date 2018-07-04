@@ -30,24 +30,20 @@ actions:
     chroot: true
     command: echo "deb {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
 
-    # Halium packages
+    # Mainline hardware specific packages
   - action: apt
     packages:
       - bash-completion
-      - gdb
-      - libc6-dbg
-      - libhybris-dev
-      - libhybris-test
-      - lxc
-      - lxc-android
       - network-manager
       - ofono
       - ofono-scripts
       - strace
       - vim
-      - hybris-usb
       - dropbear-bin
       - dropbear-run
+      - rmtfs
+      - qrtr
+      - rpmsgexport
 
 # Plasma Mobile packages
 # Only installed if variant is plamo
@@ -57,7 +53,7 @@ actions:
       - simplelogin
       - kwin-wayland
       - plasma-phone-components
-      - kwin-wayland-backend-hwcomposer
+      - kwin-wayland-backend-drm
       - plasma-phone-settings
       - kinfocenter
       - kirigami-gallery
