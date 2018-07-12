@@ -16,6 +16,8 @@ matrix:
     - env: ARCH=i386 VARIANT=default RECIPE=mainline
 
 install:
+  - sudo mkdir -p /usr/etc/default/
+  - sudo touch /usr/etc/default/keyboard.default
   - echo "deb http://de.archive.ubuntu.com/ubuntu xenial main universe" |sudo tee -a /etc/apt/sources.list
   - sudo apt-get update
   - sudo apt-get install dpkg apt debian-archive-keyring -y
