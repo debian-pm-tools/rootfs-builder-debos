@@ -20,10 +20,10 @@ install:
   - sudo touch /usr/etc/default/keyboard.default
   - echo "deb http://de.archive.ubuntu.com/ubuntu xenial main universe" |sudo tee -a /etc/apt/sources.list
   - sudo apt-get update
-  - sudo apt-get install dpkg apt debian-archive-keyring -y
+  - sudo apt-get install dpkg debian-archive-keyring -y
   - echo "deb http://deb.debian.org/debian testing main" |sudo tee -a /etc/apt/sources.list
-  - sudo apt update
-  - sudo apt install debos -y
+  - sudo apt-get update
+  - sudo apt-get install debos -y
 
 script:
   - sudo debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
