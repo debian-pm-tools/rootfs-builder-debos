@@ -49,6 +49,14 @@ actions:
       - dropbear-bin
       - dropbear-run
 
+  - action: run
+    chroot: true
+    script: scripts/halium/enable-services.sh
+
+  - action: run
+    chroot: true
+    script: scripts/halium/enable-libhybris.sh
+
 # Plasma Mobile packages
 # Only installed if variant is plamo
 {{ if eq $variant "plamo" }}
@@ -82,6 +90,11 @@ actions:
     chroot: true
     script: scripts/setup-plasma-env.sh
 {{end}}
+
+  - action: run
+    description: Set hostname
+    chroot: true
+    command: echo debian-device > /etc/hostname
     
   - action: pack
     file: {{ $image }}
