@@ -17,6 +17,7 @@ actions:
     # Add debian-pm repository and disable gpg check since we don't have a keyring yet.
     # It's still pretty secure thanks to https
   - action: run
+    description: Prepare installing the keyring
     chroot: true
     command: echo "deb [trusted=yes] {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
 
@@ -27,6 +28,7 @@ actions:
 
     # Turn on the gpg check again
   - action: run
+    description: Add final debian-pm repository
     chroot: true
     command: echo "deb {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
 
@@ -48,6 +50,8 @@ actions:
       - hybris-usb
       - dropbear-bin
       - dropbear-run
+      - pulseaudio-module-droid
+      - pulseaudio-module-droid-glue
 
   - action: run
     chroot: true
@@ -69,7 +73,6 @@ actions:
       - plasma-phone-settings
       - kinfocenter
       - kirigami-gallery
-      - kaidan
       - plasma-discover
       - qtvirtualkeyboard-plugin
       - plasma-nm
@@ -77,6 +80,10 @@ actions:
       - qml-module-ofono
       - telepathy-ofono-ril-mc-plugin
       - koko
+      - kaidan
+      - plasma-angelfish
+      - glosbit
+      - llsvplayer
 
   - action: run
     chroot: true
@@ -95,7 +102,7 @@ actions:
     description: Set hostname
     chroot: true
     command: echo debian-device > /etc/hostname
-    
+
   - action: pack
     file: {{ $image }}
     compression: gz

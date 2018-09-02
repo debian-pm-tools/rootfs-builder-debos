@@ -57,14 +57,17 @@ actions:
       - plasma-phone-settings
       - kinfocenter
       - kirigami-gallery
-      - kaidan
       - plasma-discover
       - qtvirtualkeyboard-plugin
       - plasma-nm
       - telegram-desktop
       - qml-module-ofono
       - telepathy-ofono-ril-mc-plugin
+      - kaidan
       - koko
+      - plasma-angelfish
+      - glosbit
+      - llsvplayer
 
   - action: run
     chroot: true
