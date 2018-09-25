@@ -24,14 +24,13 @@ matrix:
     - env: ARCH=arm64 VARIANT=plamo RECIPE=mainline
     - env: ARCH=i386 VARIANT=plamo RECIPE=mainline
 
-install:
-  - sudo mkdir -p /usr/etc/default/
-  - sudo touch /usr/etc/default/keyboard.default
-  - echo "deb http://de.archive.ubuntu.com/ubuntu xenial main universe" |sudo tee -a /etc/apt/sources.list
+before_install:
   - sudo apt-get update
   - sudo apt-get install dpkg debian-archive-keyring -y
   - echo "deb http://deb.debian.org/debian testing main" |sudo tee -a /etc/apt/sources.list
   - sudo apt-get update
+
+install:
   - sudo apt-get install debos -y
 
 script:
