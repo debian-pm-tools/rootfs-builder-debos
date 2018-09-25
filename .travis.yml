@@ -9,12 +9,20 @@ env:
 
 matrix:
   include:
+    # command line only images
     - env: ARCH=armhf VARIANT=default RECIPE=halium
     - env: ARCH=arm64 VARIANT=default RECIPE=halium
     - env: ARCH=i386 VARIANT=default RECIPE=halium
     - env: ARCH=armhf VARIANT=default RECIPE=mainline
     - env: ARCH=arm64 VARIANT=default RECIPE=mainline
     - env: ARCH=i386 VARIANT=default RECIPE=mainline
+    # Plasma Mobile images
+    - env: ARCH=armhf VARIANT=plamo RECIPE=halium
+    - env: ARCH=arm64 VARIANT=plamo RECIPE=halium
+    - env: ARCH=i386 VARIANT=plamo RECIPE=halium
+    - env: ARCH=armhf VARIANT=plamo RECIPE=mainline
+    - env: ARCH=arm64 VARIANT=plamo RECIPE=mainline
+    - env: ARCH=i386 VARIANT=plamo RECIPE=mainline
 
 install:
   - sudo mkdir -p /usr/etc/default/
