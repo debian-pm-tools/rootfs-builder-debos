@@ -1,0 +1,112 @@
+image: jbbgameich/debos-docker
+
+stages:
+  - build
+
+halium-default-armhf:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: halium
+    VARIANT: default
+    ARCH: armhf
+
+halium-default-arm64:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: halium
+    VARIANT: default
+    ARCH: arm64
+
+halium-default-i386:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: halium
+    VARIANT: default
+    ARCH: i386
+
+mainline-default-armhf:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: mainline
+    VARIANT: default
+    ARCH: armhf
+
+mainline-default-arm64:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: mainline
+    VARIANT: default
+    ARCH: arm64
+
+mainline-default-i386:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: mainline
+    VARIANT: default
+    ARCH: i386
+
+halium-plamo-armhf:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: halium
+    VARIANT: plamo
+    ARCH: armhf
+
+halium-plamo-arm64:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: halium
+    VARIANT: plamo
+    ARCH: arm64
+
+halium-plamo-i386:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: halium
+    VARIANT: plamo
+    ARCH: i386
+
+mainline-plamo-armhf:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: mainline
+    VARIANT: plamo
+    ARCH: armhf
+
+mainline-plamo-arm64:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: mainline
+    VARIANT: plamo
+    ARCH: arm64
+
+mainline-plamo-i386:
+  stage: build
+  script:
+    - debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  variables:
+    RECIPE: mainline
+    VARIANT: plamo
+    ARCH: i386
