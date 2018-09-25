@@ -1,4 +1,5 @@
 sudo: required
+dist: xenial
 
 # Only build if there's no tag, but manually set the 'continuous' tag for deploy
 if: tag IS blank
@@ -8,9 +9,9 @@ env:
 
 matrix:
   include:
-    - env: ARCH=armhf VARIANT=default RECIPE=halium-generic
-    - env: ARCH=arm64 VARIANT=default RECIPE=halium-generic
-    - env: ARCH=i386 VARIANT=default RECIPE=halium-generic
+    - env: ARCH=armhf VARIANT=default RECIPE=halium
+    - env: ARCH=arm64 VARIANT=default RECIPE=halium
+    - env: ARCH=i386 VARIANT=default RECIPE=halium
     - env: ARCH=armhf VARIANT=default RECIPE=mainline
     - env: ARCH=arm64 VARIANT=default RECIPE=mainline
     - env: ARCH=i386 VARIANT=default RECIPE=mainline
