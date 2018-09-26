@@ -7,4 +7,4 @@ chmod 400 ~/.ssh/id_rsa
 rsync -avzP -e \
         "ssh -o StrictHostKeyChecking=no -p $DEPLOY_PORT" \
         $TRAVIS_BUILD_DIR/debian-*.tar.xz \
-        $DEPLOY_ACCOUNT:/home/travis/ &
+        $DEPLOY_ACCOUNT:/home/travis/
