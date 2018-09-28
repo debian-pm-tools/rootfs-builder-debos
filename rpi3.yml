@@ -36,7 +36,8 @@ actions:
     recommends: false
     packages:
       - linux-image-{{ $architecture }}
-      - u-boot-rpi
+      - firmware-brcm80211
+      - raspi3-firmware
 
   - action: overlay
     source: raspi3-overlay
