@@ -1,4 +1,5 @@
-{{- $architecture := or .architecture "armhf" -}}
+{{- $architecture := or .architecture "arm64" -}}
+{{- $firmware_version := or .firmware_version "1.20180919" -}}
 {{ $suite :=  "buster" }}
 {{- $variant := or .variant "default" -}}
 {{ $image := or .image (printf "debian-rpi3-%s-%s-%s.tar.xz" $variant $suite $architecture) }}
@@ -7,6 +8,12 @@
 architecture: {{ $architecture }}
 
 actions:
+  # Download all needed proprietary stuff first
+  - action: download
+    url: https://github.com/raspberrypi/firmware/archive/{{ $firmware_version }}.tar.gz
+    unpack: true	# Unpack downloaded file
+    name: firmware	# name for usage directory with unpacked content in other actions
+
   - action: debootstrap
     suite: {{ $suite }}
     components:
@@ -16,33 +23,58 @@ actions:
     mirror: https://deb.debian.org/debian
     variant: minbase
 
-    # Add debian-pm repository and disable gpg check since we don't have a keyring yet.
-    # It's still pretty secure thanks to https
-  - action: run
-    description: Prepare installing the keyring
-    chroot: true
-    command: echo "deb [trusted=yes] {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
-
-    # Install the keyring
   - action: apt
-    packages:
-      - debian-pm-archive-keyring
+    packages: [ sudo, openssh-server, adduser, systemd-sysv]
 
-    # Turn on the gpg check again
   - action: run
-    description: Add final debian-pm repository
     chroot: true
-    command: echo "deb {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
+    script: setup-user.sh
+
+  - action: run
+    chroot: true
+    command: echo rpi3 > /etc/hostname
+
+  - action: overlay
+    source: networkd
+
+  - action: run
+    chroot: true
+    script: setup-networking.sh
 
   - action: apt
     recommends: false
     packages:
       - linux-image-{{ $architecture }}
-      - firmware-brcm80211
-      - raspi3-firmware
+      - u-boot-rpi
+
+  # add firmware
+  - action: overlay
+    origin: firmware
+    source: firmware-{{ $firmware_version }}/boot
+    destination: /boot/firmware
+
+  - action: run
+    chroot: true
+    command: rm -rf /boot/firmware/kernel*.img /boot/firmware/*.dtb /boot/firmware/overlays
+
+  - action: run
+    chroot: true
+    command: cp /usr/lib/u-boot/rpi_3/* /boot/firmware/
 
   - action: overlay
-    source: raspi3-overlay
+    source: fw-config
+    destination: /boot/firmware
+
+  - action: run
+    chroot: true
+    command: echo console=ttyS0,115200 > /etc/kernel/cmdline
+
+  - action: overlay
+    source: u-boot-menu
+
+  - action: run
+    chroot: true
+    command: u-boot-update
 
 # Plasma Mobile packages
 # Only installed if variant is plamo
