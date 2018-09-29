@@ -24,22 +24,18 @@ actions:
     variant: minbase
 
   - action: apt
-    packages: [ sudo, openssh-server, adduser, systemd-sysv]
-
-  - action: run
-    chroot: true
-    script: setup-user.sh
-
-  - action: run
-    chroot: true
-    command: echo rpi3 > /etc/hostname
+    packages:
+      - systemd-sysv
+      - dropbear-bin
+      - dropbear-run
+      - bash-completion
 
   - action: overlay
-    source: networkd
+    source: rpi3-overlay/networkd
 
   - action: run
     chroot: true
-    script: setup-networking.sh
+    script: scripts/rpi3/setup-networking.sh
 
   - action: apt
     recommends: false
@@ -62,7 +58,7 @@ actions:
     command: cp /usr/lib/u-boot/rpi_3/* /boot/firmware/
 
   - action: overlay
-    source: fw-config
+    source: rpi3-overlay/fw-config
     destination: /boot/firmware
 
   - action: run
@@ -70,7 +66,7 @@ actions:
     command: echo console=ttyS0,115200 > /etc/kernel/cmdline
 
   - action: overlay
-    source: u-boot-menu
+    source: rpi3-overlay/u-boot-menu
 
   - action: run
     chroot: true
