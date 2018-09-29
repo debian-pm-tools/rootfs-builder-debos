@@ -111,6 +111,9 @@ actions:
       - plasma-angelfish
       - glosbit
       - llsvplayer
+      - vvave
+      - pix
+      - qmlkonsole
 
   - action: run
     chroot: true
