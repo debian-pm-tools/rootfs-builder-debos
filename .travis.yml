@@ -33,7 +33,7 @@ before_install:
   - sudo apt-get update
 
 install:
-  - sudo apt-get install debos -y
+  - sudo apt-get install debos bmap-tools -y
 
 script:
   - sudo debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
