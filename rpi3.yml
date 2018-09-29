@@ -72,6 +72,22 @@ actions:
     chroot: true
     command: u-boot-update
 
+    # Add debian-pm repository and disable gpg check since we don't have a keyring yet.
+    # It's still pretty secure thanks to https
+  - action: run
+    chroot: true
+    command: echo "deb [trusted=yes] {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
+
+    # Install the keyring
+  - action: apt
+    packages:
+      - debian-pm-archive-keyring
+
+    # Turn on the gpg check again
+  - action: run
+    chroot: true
+    command: echo "deb {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
+
 # Plasma Mobile packages
 # Only installed if variant is plamo
 {{ if eq $variant "plamo" }}
