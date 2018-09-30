@@ -15,4 +15,4 @@ done
 rsync -avzP -e \
         "ssh -o StrictHostKeyChecking=no -p $DEPLOY_PORT" \
         $TRAVIS_BUILD_DIR/$FILES \
-        $DEPLOY_ACCOUNT:/var/www/archive.kaidan.im/debian-pm
+        $DEPLOY_ACCOUNT:/var/www/archive.kaidan.im/debian-pm/images
