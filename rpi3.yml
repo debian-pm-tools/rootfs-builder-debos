@@ -114,6 +114,7 @@ actions:
       - vvave
       - pix
       - qmlkonsole
+      - index
 
   - action: run
     chroot: true
