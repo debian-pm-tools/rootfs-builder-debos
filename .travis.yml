@@ -1,12 +1,6 @@
 sudo: required
 dist: xenial
 
-# Only build if there's no tag, but manually set the 'continuous' tag for deploy
-if: tag IS blank
-env:
-  global:
-    - TRAVIS_TAG=continuous
-
 matrix:
   include:
     # command line only images
@@ -36,7 +30,7 @@ install:
   - sudo apt-get install debos bmap-tools -y
 
 script:
-  - sudo debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  - travis_wait 30 sudo debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
 
 deploy:
   provider: script
