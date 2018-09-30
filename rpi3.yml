@@ -2,7 +2,7 @@
 {{- $firmware_version := or .firmware_version "1.20180919" -}}
 {{ $suite :=  "buster" }}
 {{- $variant := or .variant "default" -}}
-{{ $image := or .image (printf "debian-rpi3-%s-%s-%s.tar" $variant $suite $architecture) }}
+{{ $image := or .image (printf "debian-rpi3-%s-%s-%s.img" $variant $suite $architecture) }}
 {{ $repo := or .repo "https://debian-pm-tools.github.io/apt-repo" }}
 
 architecture: {{ $architecture }}

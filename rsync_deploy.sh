@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-FILES="debian-*.tar.xz*"
+FILES="debian-*.*.xz*"
 
 echo $DEPLOY_KEY_PRIVATE | base64 -d | xz -d > ~/.ssh/id_rsa
 echo $DEPLOY_KEY_PUBLIC | base64 -d | xz -d > ~/.ssh/id_rsa.pub
