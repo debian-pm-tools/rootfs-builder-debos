@@ -8,7 +8,7 @@ chmod 400 ~/.ssh/id_rsa
 
 # Generate checksums
 for file in $FILES; do
-	sha256sum $file > ${file}.sha256sum
+	sha256sum $file > ${file}.sha256
 done
 
 # Deploy to server
