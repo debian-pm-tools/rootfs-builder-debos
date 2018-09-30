@@ -7,10 +7,13 @@ echo $DEPLOY_KEY_PUBLIC | base64 -d | xz -d > ~/.ssh/id_rsa.pub
 chmod 400 ~/.ssh/id_rsa
 
 # Generate checksums
-sha256sum $FILES > sha256sums
+for file in $FILES; do
+	sha256sum $file > ${file}.sha256sum
+done
 
 # Deploy to server
 rsync -avzP -e \
         "ssh -o StrictHostKeyChecking=no -p $DEPLOY_PORT" \
         $TRAVIS_BUILD_DIR/$FILES \
+        $TRAVIS_BUILD_DIR/"*.sha256sum" \
         $DEPLOY_ACCOUNT:/var/www/archive.kaidan.im/debian-pm
