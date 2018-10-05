@@ -27,7 +27,7 @@ before_install:
   - sudo apt-get update
 
 install:
-  - sudo apt-get install debos bmap-tools -y
+  - sudo apt-get install debos bmap-tools dosfstools e2fsprogs -y
 
 script:
   - travis_wait 30 sudo debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
