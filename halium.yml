@@ -32,6 +32,11 @@ actions:
     chroot: true
     command: echo "deb {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
 
+  - action: run
+    description: Pin debian pm repository
+    chroot: true
+    script: scripts/pin-debian-pm-repository.sh
+
     # Halium packages
   - action: apt
     packages:
