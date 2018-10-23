@@ -2,7 +2,7 @@
 {{ $suite :=  "buster" }}
 {{- $variant := or .variant "default" -}}
 {{ $image := or .image (printf "debian-halium-%s-%s-%s.tar.xz" $variant $suite $architecture) }}
-{{ $repo := or .repo "https://debian-pm-tools.github.io/apt-repo" }}
+{{ $repo := or .repo "https://repo.kaidan.im/debpm" }}
 
 architecture: {{ $architecture }}
 
