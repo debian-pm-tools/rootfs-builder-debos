@@ -17,8 +17,6 @@ matrix:
     - env: ARCH=armhf VARIANT=plamo RECIPE=mainline
     - env: ARCH=arm64 VARIANT=plamo RECIPE=mainline
     - env: ARCH=i386 VARIANT=plamo RECIPE=mainline
-    # Raspberry Pi
-    - env: ARCH=arm64 VARIANT=plamo RECIPE=rpi3
 
 before_install:
   - sudo apt-get update
