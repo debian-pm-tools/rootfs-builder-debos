@@ -56,7 +56,6 @@ actions:
       - kwin-wayland-backend-drm
       - plasma-phone-settings
       - kinfocenter
-      - kirigami-gallery
       - plasma-discover
       - qtvirtualkeyboard-plugin
       - plasma-nm

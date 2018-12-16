@@ -77,7 +77,6 @@ actions:
       - kwin-wayland-backend-hwcomposer
       - plasma-phone-settings
       - kinfocenter
-      - kirigami-gallery
       - plasma-discover
       - qtvirtualkeyboard-plugin
       - plasma-nm
