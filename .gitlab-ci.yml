@@ -11,6 +11,8 @@ halium-default-armhf:
     RECIPE: halium
     VARIANT: default
     ARCH: armhf
+  tags:
+    - qemu
 
 halium-default-arm64:
   stage: build
@@ -20,6 +22,8 @@ halium-default-arm64:
     RECIPE: halium
     VARIANT: default
     ARCH: arm64
+  tags:
+    - qemu
 
 halium-default-i386:
   stage: build
@@ -29,6 +33,8 @@ halium-default-i386:
     RECIPE: halium
     VARIANT: default
     ARCH: i386
+  tags:
+    - qemu
 
 mainline-default-armhf:
   stage: build
@@ -38,6 +44,8 @@ mainline-default-armhf:
     RECIPE: mainline
     VARIANT: default
     ARCH: armhf
+  tags:
+    - qemu
 
 mainline-default-arm64:
   stage: build
@@ -47,6 +55,8 @@ mainline-default-arm64:
     RECIPE: mainline
     VARIANT: default
     ARCH: arm64
+  tags:
+    - qemu
 
 mainline-default-i386:
   stage: build
@@ -56,6 +66,8 @@ mainline-default-i386:
     RECIPE: mainline
     VARIANT: default
     ARCH: i386
+  tags:
+    - qemu
 
 halium-plamo-armhf:
   stage: build
@@ -65,6 +77,8 @@ halium-plamo-armhf:
     RECIPE: halium
     VARIANT: plamo
     ARCH: armhf
+  tags:
+    - qemu
 
 halium-plamo-arm64:
   stage: build
@@ -83,6 +97,8 @@ halium-plamo-i386:
     RECIPE: halium
     VARIANT: plamo
     ARCH: i386
+  tags:
+    - qemu
 
 mainline-plamo-armhf:
   stage: build
@@ -92,6 +108,8 @@ mainline-plamo-armhf:
     RECIPE: mainline
     VARIANT: plamo
     ARCH: armhf
+  tags:
+    - qemu
 
 mainline-plamo-arm64:
   stage: build
@@ -101,6 +119,8 @@ mainline-plamo-arm64:
     RECIPE: mainline
     VARIANT: plamo
     ARCH: arm64
+  tags:
+    - qemu
 
 mainline-plamo-i386:
   stage: build
@@ -110,3 +130,5 @@ mainline-plamo-i386:
     RECIPE: mainline
     VARIANT: plamo
     ARCH: i386
+  tags:
+    - qemu
