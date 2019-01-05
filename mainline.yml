@@ -71,6 +71,7 @@ actions:
       - pix
       - qmlkonsole
       - index
+      - dbus-x11
 
   - action: run
     chroot: true
