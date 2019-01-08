@@ -93,6 +93,7 @@ actions:
       - qmlkonsole
       - index
       - dbus-x11
+      - sensorfw-hybris
 
   - action: run
     chroot: true
