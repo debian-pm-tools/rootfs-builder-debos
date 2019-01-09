@@ -75,10 +75,12 @@ actions:
       - sensorfw
 
   - action: run
+    description: Set up user account
     chroot: true
     script: scripts/setup-user.sh
 
   - action: run
+    description: Set environment variables for Plasma
     chroot: true
     script: scripts/setup-plasma-env.sh
 {{end}}

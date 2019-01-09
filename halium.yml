@@ -59,10 +59,12 @@ actions:
       - pulseaudio-module-droid-glue
 
   - action: run
+    description: Enable halium services
     chroot: true
     script: scripts/halium/enable-services.sh
 
   - action: run
+    description: Enable libhybris
     chroot: true
     script: scripts/halium/enable-libhybris.sh
 
@@ -96,14 +98,17 @@ actions:
       - libsensorfw-hybris
 
   - action: run
+    description: Set up user account
     chroot: true
     script: scripts/setup-user.sh
 
   - action: run
+    description: Set environment varialbes for Halium
     chroot: true
     script: scripts/halium/setup-halium-env.sh
 
   - action: run
+    description: Set environment variables for Plasma
     chroot: true
     script: scripts/setup-plasma-env.sh
 {{end}}
