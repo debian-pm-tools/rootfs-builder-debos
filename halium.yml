@@ -101,7 +101,7 @@ actions:
 
   - action: run
     chroot: true
-    script: scripts/halium/setup-ut-env.sh
+    script: scripts/halium/setup-halium-env.sh
 
   - action: run
     chroot: true

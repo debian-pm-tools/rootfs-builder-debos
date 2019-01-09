@@ -2,7 +2,8 @@
 
 echo "I: setting up initial environment for Halium..."
 
-echo "HOSTNAME=android
+cat <<EOF >>/etc/environment
+HOSTNAME=android
 TERM=linux
 ANDROID_CACHE=/cache
 LOOP_MOUNTPOINT=/mnt/obb
@@ -18,4 +19,5 @@ ANDROID_ROOT=/system
 EXTERNAL_STORAGE=/mnt/sdcard
 LANG=en_US.UTF-8
 LANGUAGE=en_US:en
-FLASH_KERNEL_SKIP=true" > /etc/environment
+FLASH_KERNEL_SKIP=true
+EOF
