@@ -1,7 +1,7 @@
 {{- $architecture := or .architecture "armhf" -}}
 {{ $suite :=  "buster" }}
 {{- $variant := or .variant "default" -}}
-{{ $image := or .image (printf "debian-mainline-%s-%s-%s.tar.xz" $variant $suite $architecture) }}
+{{ $image := or .image (printf "debian-mainline-%s-%s-%s.tar.gz" $variant $suite $architecture) }}
 {{ $repo := or .repo "https://repo.kaidan.im/debpm" }}
 
 architecture: {{ $architecture }}
