@@ -1,0 +1,5 @@
+---
+
+shlint:
+  image: debian:testing
+  script: bash -n $(find . -name "*.sh")
