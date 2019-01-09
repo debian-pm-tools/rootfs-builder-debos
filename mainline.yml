@@ -87,4 +87,4 @@ actions:
     
   - action: pack
     file: {{ $image }}
-    compression: xz
+    compression: gz
