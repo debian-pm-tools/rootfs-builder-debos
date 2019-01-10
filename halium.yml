@@ -103,11 +103,6 @@ actions:
     script: scripts/setup-user.sh
 
   - action: run
-    description: Set environment varialbes for Halium
-    chroot: true
-    script: scripts/halium/setup-halium-env.sh
-
-  - action: run
     description: Set environment variables for Plasma
     chroot: true
     script: scripts/setup-plasma-env.sh
