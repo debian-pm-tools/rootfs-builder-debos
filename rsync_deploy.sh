@@ -9,7 +9,7 @@ chmod 400 ~/.ssh/id_rsa
 # Generate checksums and zsyncfiles
 for file in $FILES; do
 	sha256sum $file > ${file}.sha256
-	zsyncmake -b 2048 -u ${file} ${file}
+	zsyncmake -C -b 2048 -u ${file} ${file}
 done
 
 # Deploy to server
