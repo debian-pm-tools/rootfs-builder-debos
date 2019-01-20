@@ -96,6 +96,7 @@ actions:
       - index
       - dbus-x11
       - libsensorfw-hybris
+      - kaccounts-mobile
 
   - action: run
     description: Set up user account
