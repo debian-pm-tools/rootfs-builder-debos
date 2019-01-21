@@ -12,5 +12,5 @@ if [ command -v systemctl >/dev/null ]; then
 
     systemctl set-default multi-user.target
 else
-    # To be implemented
+    echo "To be implemented"
 fi
