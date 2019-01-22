@@ -1,6 +1,6 @@
 {{- $architecture := or .architecture "armhf" -}}
 {{ $suite :=  "buster" }}
-{{- $variant := or .variant "default" -}}
+{{- $variant := or .variant "minimal" -}}
 {{ $image := or .image (printf "debian-halium-%s-%s-%s.tar.gz" $variant $suite $architecture) }}
 {{ $repo := or .repo "https://repo.kaidan.im/debpm" }}
 
@@ -69,8 +69,8 @@ actions:
     script: scripts/halium/enable-libhybris.sh
 
 # Plasma Mobile packages
-# Only installed if variant is plamo
-{{ if eq $variant "plamo" }}
+# Only installed if variant is plasma-mobile
+{{ if eq $variant "plasma-mobile" }}
   - action: apt
     packages:
       - simplelogin

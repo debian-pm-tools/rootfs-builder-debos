@@ -5,19 +5,19 @@ language: minimal
 matrix:
   include:
     # command line only images
-    - env: ARCH=armhf VARIANT=default RECIPE=halium
-    - env: ARCH=arm64 VARIANT=default RECIPE=halium
-    - env: ARCH=i386 VARIANT=default RECIPE=halium
-    - env: ARCH=armhf VARIANT=default RECIPE=mainline
-    - env: ARCH=arm64 VARIANT=default RECIPE=mainline
-    - env: ARCH=i386 VARIANT=default RECIPE=mainline
+    - env: ARCH=armhf VARIANT=minimal RECIPE=halium
+    - env: ARCH=arm64 VARIANT=minimal RECIPE=halium
+    - env: ARCH=i386 VARIANT=minimal RECIPE=halium
+    - env: ARCH=armhf VARIANT=minimal RECIPE=mainline
+    - env: ARCH=arm64 VARIANT=minimal RECIPE=mainline
+    - env: ARCH=i386 VARIANT=minimal RECIPE=mainline
     # Plasma Mobile images
-    - env: ARCH=armhf VARIANT=plamo RECIPE=halium
-    - env: ARCH=arm64 VARIANT=plamo RECIPE=halium
-    - env: ARCH=i386 VARIANT=plamo RECIPE=halium
-    - env: ARCH=armhf VARIANT=plamo RECIPE=mainline
-    - env: ARCH=arm64 VARIANT=plamo RECIPE=mainline
-    - env: ARCH=i386 VARIANT=plamo RECIPE=mainline
+    - env: ARCH=armhf VARIANT=plasma-mobile RECIPE=halium
+    - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=halium
+    - env: ARCH=i386 VARIANT=plasma-mobile RECIPE=halium
+    - env: ARCH=armhf VARIANT=plasma-mobile RECIPE=mainline
+    - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=mainline
+    - env: ARCH=i386 VARIANT=plasma-mobile RECIPE=mainline
 
 before_install:
   - sudo apt-get update
