@@ -1,6 +1,6 @@
 #!/bin/sh -x
 
-if [ command -v systemctl >/dev/null ]; then
+if command -v systemctl >/dev/null; then
     systemctl enable system.mount
     systemctl enable android-mount.service
 
