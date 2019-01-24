@@ -6,5 +6,5 @@ for package in $PIN_PACKAGES; do
     echo "Package: $package" >>/etc/apt/prefences
     echo "Pin: origin repo.kaidan.im" >>/etc/apt/prefences
     echo "Pin-Priority: 2000" >>/etc/apt/prefences
-    echo >>/etc/apt/prefences
+    echo >>/etc/apt/preferences
 done
