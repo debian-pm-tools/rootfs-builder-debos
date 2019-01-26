@@ -57,6 +57,7 @@ actions:
       - dropbear-run
       - pulseaudio-module-droid
       - pulseaudio-module-droid-glue
+      - udev
 
   - action: run
     description: Enable halium services
