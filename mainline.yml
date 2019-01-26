@@ -74,6 +74,7 @@ actions:
       - dbus-x11
       - sensorfw
       - kaccounts-mobile
+      - locales
 
   - action: run
     description: Set up user account
