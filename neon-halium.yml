@@ -91,6 +91,11 @@ actions:
     script: scripts/setup-plasma-env.sh
 
   - action: run
+    description: Set graphical target as default
+    chroot: true
+    script: scripts/set-graphical-target.sh
+
+  - action: run
     description: Set hostname
     chroot: true
     command: echo kde-neon-device > /etc/hostname
