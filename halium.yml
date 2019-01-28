@@ -79,6 +79,7 @@ actions:
       - plasma-phone-components
       - kwin-wayland-backend-hwcomposer
       - plasma-phone-settings
+      - plasma-settings
       - kinfocenter
       - plasma-discover
       - qtvirtualkeyboard-plugin
@@ -86,6 +87,7 @@ actions:
       - telegram-desktop
       - qml-module-ofono
       - telepathy-ofono-ril-mc-plugin
+      - pulseaudio-utils
       - koko
       - kaidan
       - plasma-angelfish
@@ -97,8 +99,13 @@ actions:
       - index
       - dbus-x11
       - libsensorfw-hybris
+      - upower
       - kaccounts-mobile
       - locales
+      - procps
+      - less
+      - sudo
+      - polkit-kde-agent-1
 
   - action: run
     description: Set up user account
