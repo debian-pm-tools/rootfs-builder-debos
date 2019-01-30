@@ -82,6 +82,7 @@ actions:
       - less
       - sudo
       - polkit-kde-agent-1
+      - qtvirtualkeyboard-plugin
 
   - action: run
     description: Set up user account
