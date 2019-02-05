@@ -108,6 +108,7 @@ actions:
       - polkit-kde-agent-1
       - qtvirtualkeyboard-plugin
       - gpodder-qml
+      - okular-mobile
 
   - action: run
     description: Set up user account
