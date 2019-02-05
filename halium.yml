@@ -107,6 +107,7 @@ actions:
       - sudo
       - polkit-kde-agent-1
       - qtvirtualkeyboard-plugin
+      - gpodder-qml
 
   - action: run
     description: Set up user account
