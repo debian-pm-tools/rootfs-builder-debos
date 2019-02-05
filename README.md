@@ -11,4 +11,4 @@ You can build the Plasma Mobile variant like this:
 
 The images can be built for different architectures
 
-```debos recipe.yml -t architecture:arm64"```
+```debos recipe.yml -t architecture:"arm64"```
