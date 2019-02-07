@@ -86,6 +86,7 @@ actions:
       - gpodder-qml
       - okular-mobile
       - peruse
+      - kdeconnect-mobile
 
   - action: run
     description: Set up user account
