@@ -109,6 +109,7 @@ actions:
       - qtvirtualkeyboard-plugin
       - gpodder-qml
       - okular-mobile
+      - peruse
 
   - action: run
     description: Set up user account
