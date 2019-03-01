@@ -11,6 +11,7 @@ matrix:
     - env: ARCH=armhf VARIANT=minimal RECIPE=mainline
     - env: ARCH=arm64 VARIANT=minimal RECIPE=mainline
     - env: ARCH=i386 VARIANT=minimal RECIPE=mainline
+    - env: ARCH=arm64 VARIANT=minimal RECIPE=anakin
     # Plasma Mobile images
     - env: ARCH=armhf VARIANT=plasma-mobile RECIPE=halium
     - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=halium
@@ -18,6 +19,7 @@ matrix:
     - env: ARCH=armhf VARIANT=plasma-mobile RECIPE=mainline
     - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=mainline
     - env: ARCH=i386 VARIANT=plasma-mobile RECIPE=mainline
+    - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=anakin
 
 before_install:
   - sudo apt-get update
