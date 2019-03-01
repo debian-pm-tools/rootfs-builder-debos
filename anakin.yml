@@ -14,6 +14,7 @@ actions:
     mirror: https://deb.debian.org/debian
     variant: minbase
 
+    # Hardware specific parts
   - action: download
     description: Fetch latest kernel ci build
     url: https://gitlab.com/debian-pm/devices/anakin-linux/-/jobs/artifacts/dsi-v7-working-lima/download?job=build
