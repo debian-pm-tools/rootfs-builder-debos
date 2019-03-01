@@ -47,6 +47,10 @@ actions:
     source: .
     destination: /var/tmp/u-boot-sunxi-with-spl.bin
 
+  - action: overlay
+    source: anakin/overlay
+    destination: /
+
     # Add debian-pm repository and disable gpg check since we don't have a keyring yet.
     # It's still pretty secure thanks to https
   - action: run
@@ -136,7 +140,7 @@ actions:
     chroot: true
     script: scripts/set-graphical-target.sh
 {{end}}
-    
+
   - action: image-partition
     imagename: {{ $image }}
     imagesize: 4GB
