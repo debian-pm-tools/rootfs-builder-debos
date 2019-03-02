@@ -162,3 +162,13 @@ actions:
     origin: filesystem
     source: /var/tmp/u-boot-sunxi-with-spl.bin
     offset: {{ sector 2 }}
+
+  - action: run
+    description: Create bmap file
+    postprocess: true
+    command: bmaptool create {{ $image }} > {{ $image }}.img.bmap
+
+  - action: run
+    description: Compress image
+    postprocess: true
+    command: gzip -f9 {{ $image }}
