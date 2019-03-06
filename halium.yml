@@ -1,5 +1,5 @@
 {{- $architecture := or .architecture "armhf" -}}
-{{ $suite :=  "buster" }}
+{{ $suite :=  "testing" }}
 {{- $variant := or .variant "minimal" -}}
 {{ $image := or .image (printf "debian-halium-%s-%s-%s.tar.gz" $variant $suite $architecture) }}
 {{ $repo := or .repo "https://repo.kaidan.im/debpm" }}
