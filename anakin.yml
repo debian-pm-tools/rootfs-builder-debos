@@ -17,7 +17,7 @@ actions:
     # Hardware specific parts
   - action: download
     description: Fetch latest kernel ci build
-    url: https://gitlab.com/debian-pm/devices/anakin-linux/-/jobs/artifacts/dsi-v7-working-lima/download?job=build
+    url: https://gitlab.com/ubports/core/linux/-/jobs/artifacts/pinephone/download?job=build
     name: kernel
     filename: kernel.zip
     unpack: true
@@ -37,7 +37,7 @@ actions:
 
   - action: download
     description: Fetch u-boot build
-    url: https://dl.dropboxusercontent.com/s/qjfzp25tf2fiooo/u-boot-sunxi-with-spl.bin?raw=1
+    url: https://gitlab.com/ubports/core/u-boot/-/jobs/artifacts/master/raw/u-boot-sunxi-with-spl-sopine.bin?job=build
     name: u-boot
     filename: u-boot-sunxi-with-spl.bin
     unpack: false
@@ -141,6 +141,11 @@ actions:
     script: scripts/set-graphical-target.sh
 {{end}}
 
+  - action: run
+    description: Set hostname
+    chroot: true
+    command: echo debian-device > /etc/hostname
+
   - action: image-partition
     imagename: {{ $image }}
     imagesize: 4GB
@@ -161,7 +166,7 @@ actions:
   - action: raw
     origin: filesystem
     source: /var/tmp/u-boot-sunxi-with-spl.bin
-    offset: {{ sector 1 }}
+    offset: 8192
 
   - action: run
     description: Create bmap file
