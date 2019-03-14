@@ -81,6 +81,7 @@ actions:
       - rmtfs
       - qrtr
       - rpmsgexport
+      - u-boot-tools
 
 # Plasma Mobile packages
 # Only installed if variant is plasma-mobile
@@ -145,6 +146,12 @@ actions:
     description: Set hostname
     chroot: true
     command: echo debian-device > /etc/hostname
+
+  - action: run
+    description: Compile u-boot script
+    chroot: true
+    label: mkimage
+    command: mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d /boot/boot.txt /boot/boot.scr
 
   - action: image-partition
     imagename: {{ $image }}
