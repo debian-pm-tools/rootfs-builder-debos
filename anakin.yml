@@ -161,7 +161,7 @@ actions:
   - action: raw
     origin: filesystem
     source: /var/tmp/u-boot-sunxi-with-spl.bin
-    offset: {{ sector 2 }}
+    offset: {{ sector 1 }}
 
   - action: run
     description: Create bmap file
