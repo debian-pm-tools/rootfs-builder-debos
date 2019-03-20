@@ -65,7 +65,7 @@ actions:
     # Turn on the gpg check again
   - action: run
     chroot: true
-    command: echo "deb {{ $repo }} {{ $suite }} main devkit" > /etc/apt/sources.list.d/debian-pm.list
+    command: echo "deb {{ $repo }} {{ $suite }} main devkit non-free" > /etc/apt/sources.list.d/debian-pm.list
 
   - action: recipe
     recipe: include/minimal.yml
