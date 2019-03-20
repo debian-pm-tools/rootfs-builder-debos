@@ -1,0 +1,52 @@
+architecture: arm64
+
+actions:
+  - action: apt
+    packages:
+      - simplelogin
+      - kwin-wayland
+      - plasma-phone-components
+      - plasma-phone-settings
+      - plasma-settings
+      - kinfocenter
+      - plasma-discover
+      - qtvirtualkeyboard-plugin
+      - plasma-nm
+      - telegram-desktop
+      - qml-module-ofono
+      - telepathy-ofono-ril-mc-plugin
+      - pulseaudio-utils
+      - kaidan
+      - koko
+      - plasma-angelfish
+      - glosbit
+      - llsvplayer
+      - vvave
+      - pix
+      - qmlkonsole
+      - index
+      - dbus-x11
+      - sensorfw
+      - upower
+      - kaccounts-mobile
+      - polkit-kde-agent-1
+      - qtvirtualkeyboard-plugin
+      - gpodder-qml
+      - okular-mobile
+      - peruse
+      - kdeconnect-mobile
+
+  - action: run
+    description: Set up user account
+    chroot: true
+    script: scripts/setup-user.sh
+
+  - action: run
+    description: Set environment variables for Plasma
+    chroot: true
+    script: scripts/setup-plasma-env.sh
+
+  - action: run
+    description: Set graphical target as default
+    chroot: true
+    script: scripts/set-graphical-target.sh

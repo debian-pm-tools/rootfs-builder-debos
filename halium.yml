@@ -37,24 +37,25 @@ actions:
     chroot: true
     script: scripts/pin-debian-pm-repository.sh
 
+  - action: recipe
+    recipe: include/minimal.yml
+    variables:
+      architecture: {{ $architecture }}
+
     # Halium packages
   - action: apt
     packages:
-      - bash-completion
       - gdb
       - libc6-dbg
       - libhybris-dev
       - libhybris-test
       - lxc
       - lxc-android
-      - network-manager
       - ofono
       - ofono-scripts
       - strace
       - vim
       - hybris-usb
-      - dropbear-bin
-      - dropbear-run
       - pulseaudio-module-droid
       - pulseaudio-module-droid-glue
       - udev
@@ -72,65 +73,20 @@ actions:
 # Plasma Mobile packages
 # Only installed if variant is plasma-mobile
 {{ if eq $variant "plasma-mobile" }}
+  - action: recipe
+    recipe: include/plasma-mobile.yml
+    variables:
+      architecture: {{ $architecture }}
+
   - action: apt
     packages:
-      - simplelogin
-      - kwin-wayland
-      - plasma-phone-components
       - kwin-wayland-backend-hwcomposer
-      - plasma-phone-settings
-      - plasma-settings
-      - kinfocenter
-      - plasma-discover
-      - qtvirtualkeyboard-plugin
-      - plasma-nm
-      - telegram-desktop
-      - qml-module-ofono
-      - telepathy-ofono-ril-mc-plugin
-      - pulseaudio-utils
-      - koko
-      - kaidan
-      - plasma-angelfish
-      - glosbit
-      - llsvplayer
-      - vvave
-      - pix
-      - qmlkonsole
-      - index
-      - dbus-x11
       - libsensorfw-hybris
-      - upower
-      - kaccounts-mobile
-      - locales
-      - procps
-      - less
-      - sudo
-      - polkit-kde-agent-1
-      - qtvirtualkeyboard-plugin
-      - gpodder-qml
-      - okular-mobile
-      - peruse
-      - kdeconnect-mobile
-
-  - action: run
-    description: Set up user account
-    chroot: true
-    script: scripts/setup-user.sh
 
   - action: run
     description: Set environment varialbes for Halium
     chroot: true
     script: scripts/halium/setup-halium-env.sh
-
-  - action: run
-    description: Set environment variables for Plasma
-    chroot: true
-    script: scripts/setup-plasma-env.sh
-
-  - action: run
-    description: Set graphical target as default
-    chroot: true
-    script: scripts/set-graphical-target.sh
 {{end}}
 
   - action: run

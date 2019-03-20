@@ -1,0 +1,15 @@
+architecture: arm64
+
+actions:
+  - action: apt
+    packages:
+    - network-manager
+    - bash-completion
+    - locales
+    - procps
+    - less
+    - sudo
+    - strace
+    - vim
+    - dropbear-bin
+    - dropbear-run

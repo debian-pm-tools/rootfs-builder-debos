@@ -67,79 +67,30 @@ actions:
     chroot: true
     command: echo "deb {{ $repo }} {{ $suite }} main devkit" > /etc/apt/sources.list.d/debian-pm.list
 
-    # Mainline hardware specific packages
+  - action: recipe
+    recipe: include/minimal.yml
+    variables:
+      architecture: {{ $architecture }}
+
+    # Pine hardware specific packages
   - action: apt
     packages:
-      - bash-completion
-      - network-manager
       - ofono
       - ofono-scripts
-      - strace
-      - vim
-      - dropbear-bin
-      - dropbear-run
-      - rmtfs
-      - qrtr
-      - rpmsgexport
       - u-boot-tools
+      - mali-r6p2-wayland-driver
 
 # Plasma Mobile packages
 # Only installed if variant is plasma-mobile
 {{ if eq $variant "plasma-mobile" }}
+  - action: recipe
+    recipe: include/plasma-mobile.yml
+    variables:
+      architecture: {{ $architecture }}
+
   - action: apt
     packages:
-      - simplelogin
-      - kwin-wayland
-      - plasma-phone-components
       - kwin-wayland-backend-drm
-      - plasma-phone-settings
-      - plasma-settings
-      - kinfocenter
-      - plasma-discover
-      - qtvirtualkeyboard-plugin
-      - plasma-nm
-      - telegram-desktop
-      - qml-module-ofono
-      - telepathy-ofono-ril-mc-plugin
-      - pulseaudio-utils
-      - kaidan
-      - koko
-      - plasma-angelfish
-      - glosbit
-      - llsvplayer
-      - vvave
-      - pix
-      - qmlkonsole
-      - index
-      - dbus-x11
-      - sensorfw
-      - upower
-      - kaccounts-mobile
-      - locales
-      - procps
-      - less
-      - sudo
-      - polkit-kde-agent-1
-      - qtvirtualkeyboard-plugin
-      - gpodder-qml
-      - okular-mobile
-      - peruse
-      - kdeconnect-mobile
-
-  - action: run
-    description: Set up user account
-    chroot: true
-    script: scripts/setup-user.sh
-
-  - action: run
-    description: Set environment variables for Plasma
-    chroot: true
-    script: scripts/setup-plasma-env.sh
-
-  - action: run
-    description: Set graphical target as default
-    chroot: true
-    script: scripts/set-graphical-target.sh
 {{end}}
 
   - action: run
