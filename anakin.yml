@@ -82,6 +82,7 @@ actions:
       - qrtr
       - rpmsgexport
       - u-boot-tools
+      - mali-r6p2-wayland-driver
 
 # Plasma Mobile packages
 # Only installed if variant is plasma-mobile
