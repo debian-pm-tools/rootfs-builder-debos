@@ -126,6 +126,7 @@ actions:
       - okular-mobile
       - peruse
       - kdeconnect-mobile
+      - plasma-workspace-wallpapers
 
   - action: run
     description: Set up user account
