@@ -11,7 +11,7 @@ matrix:
     - env: ARCH=armhf VARIANT=minimal RECIPE=mainline
     - env: ARCH=arm64 VARIANT=minimal RECIPE=mainline
     - env: ARCH=i386 VARIANT=minimal RECIPE=mainline
-    - env: ARCH=arm64 VARIANT=minimal RECIPE=anakin
+    - env: ARCH=arm64 VARIANT=minimal RECIPE=pinephone
     # Plasma Mobile images
     - env: ARCH=armhf VARIANT=plasma-mobile RECIPE=halium
     - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=halium
@@ -19,7 +19,7 @@ matrix:
     - env: ARCH=armhf VARIANT=plasma-mobile RECIPE=mainline
     - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=mainline
     - env: ARCH=i386 VARIANT=plasma-mobile RECIPE=mainline
-    - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=anakin
+    - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=pinephone
 
 before_install:
   # Reset sources list (travis default ppas are often broken)

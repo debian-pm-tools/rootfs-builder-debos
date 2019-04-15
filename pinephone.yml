@@ -1,7 +1,7 @@
 {{- $architecture := or .architecture "arm64" -}}
 {{ $suite :=  "testing" }}
 {{- $variant := or .variant "minimal" -}}
-{{ $image := or .image (printf "debian-anakin-%s-%s-%s.img" $variant $suite $architecture) }}
+{{ $image := or .image (printf "debian-pinephone-%s-%s-%s.img" $variant $suite $architecture) }}
 {{ $repo := or .repo "https://repo.kaidan.im/debpm" }}
 
 architecture: {{ $architecture }}
@@ -61,7 +61,7 @@ actions:
     destination: /var/tmp/u-boot-sunxi-with-spl.bin
 
   - action: overlay
-    source: anakin/overlay
+    source: pinephone/overlay
     destination: /
 
     # Add debian-pm repository and disable gpg check since we don't have a keyring yet.
