@@ -17,7 +17,7 @@ actions:
     # Hardware specific parts
   - action: download
     description: Fetch latest kernel ci build
-    url: https://gitlab.com/ubports/core/linux/-/jobs/artifacts/pinephone/download?job=build
+    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/pinephone-panel-v01/download?job=build
     name: kernel
     filename: kernel.zip
     unpack: true
@@ -41,6 +41,19 @@ actions:
     name: u-boot
     filename: u-boot-sunxi-with-spl.bin
     unpack: false
+
+  - action: download
+    description: Fetch latest mali kernel module build
+    url: https://gitlab.com/debian-pm/devices/sunxi-mali/-/jobs/artifacts/master/download?job=build
+    name: mali-kernel
+    filename: mali.zip
+    unpack: true
+    compression: zip
+
+  - action: overlay
+    origin: mali-kernel
+    source: .
+    destination: /
 
   - action: overlay
     origin: u-boot
