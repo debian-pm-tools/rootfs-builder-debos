@@ -17,7 +17,7 @@ actions:
     # Hardware specific parts
   - action: download
     description: Fetch latest kernel ci build
-    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/pinephone-panel-v01/download?job=build
+    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/pinephone-dontbeevil/download?job=build
     name: kernel
     filename: kernel.zip
     unpack: true
