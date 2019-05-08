@@ -47,19 +47,6 @@ actions:
     source: .
     destination: /var/tmp/u-boot-sunxi-with-spl.bin
 
-  - action: download
-    description: Fetch latest mali kernel module build
-    url: https://gitlab.com/debian-pm/devices/sunxi-mali/-/jobs/artifacts/master/download?job=build
-    name: mali-kernel
-    filename: mali.zip
-    unpack: true
-    compression: zip
-
-  - action: overlay
-    origin: mali-kernel
-    source: .
-    destination: /
-
   - action: overlay
     source: pinephone/overlay
     destination: /
@@ -95,7 +82,6 @@ actions:
       - qrtr
       - rpmsgexport
       - u-boot-tools
-      - mali-400-wayland-driver
 
 # Plasma Mobile packages
 # Only installed if variant is plasma-mobile
