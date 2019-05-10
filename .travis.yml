@@ -20,6 +20,7 @@ matrix:
     - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=mainline
     - env: ARCH=i386 VARIANT=plasma-mobile RECIPE=mainline
     - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=pinephone
+    - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=librem5
 
 before_install:
   # Reset sources list (travis default ppas are often broken)
