@@ -1,0 +1,2 @@
+dtb=librem5-evk.dtb
+cmdline=quiet init=/lib/systemd/systemd

@@ -1,0 +1,191 @@
+{{- $architecture := or .architecture "arm64" -}}
+{{ $suite :=  "testing" }}
+{{- $variant := or .variant "minimal" -}}
+{{ $image := or .image (printf "debian-librem5-%s-%s-%s.img" $variant $suite $architecture) }}
+{{ $repo := or .repo "https://repo.kaidan.im/debpm" }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: debootstrap
+    suite: {{ $suite }}
+    components:
+      - main
+    mirror: https://deb.debian.org/debian
+    variant: minbase
+
+    # Hardware specific parts
+  - action: download
+    description: Fetch latest kernel ci build
+    url: https://arm01.puri.sm/job/Kernel_builds/job/devkit_kernel_build/lastSuccessfulBuild/artifact/*zip*/archive.zip
+    name: kernel
+    filename: kernel.zip
+    unpack: true
+    compression: zip
+
+  - action: overlay
+    origin: kernel
+    source: .
+    destination: /var/tmp/
+
+  - action: run
+    origin: kernel
+    chroot: true
+    description: Install kernel
+    label: dpkg
+    command: dpkg -i /var/tmp/archive/output/*.deb && rm /var/tmp/* -r
+
+  - action: download
+    description: Fetch u-boot build
+    url: https://arm01.puri.sm/job/u-boot_builds/job/uboot_devkit_build/lastSuccessfulBuild/artifact/output/uboot-devkit/u-boot-devkit.imx
+    name: u-boot
+    filename: u-boot-devkit.imx
+    unpack: false
+
+  - action: overlay
+    origin: u-boot
+    source: .
+    destination: /var/tmp/u-boot-devkit.imx
+
+  - action: overlay
+    source: librem5/overlay
+    destination: /
+
+    # Add debian-pm repository and disable gpg check since we don't have a keyring yet.
+    # It's still pretty secure thanks to https
+  - action: run
+    chroot: true
+    command: echo "deb [trusted=yes] {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
+
+  - action: run
+    chroot: true
+    command: echo "deb [trusted=yes] https://ci.puri.sm/ scratch librem5" >> /etc/apt/sources.list.d/debian-pm.list
+
+    # Install the keyring
+  - action: apt
+    packages:
+      - debian-pm-archive-keyring
+
+    # Turn on the gpg check again
+  - action: run
+    chroot: true
+    command: echo "deb {{ $repo }} {{ $suite }} main devkit pinephone non-free" > /etc/apt/sources.list.d/debian-pm.list
+
+    # Mainline hardware specific packages
+  - action: apt
+    packages:
+      - bash-completion
+      - network-manager
+      - ofono
+      - ofono-scripts
+      - strace
+      - vim
+      - dropbear-bin
+      - dropbear-run
+      - rmtfs
+      - qrtr
+      - rpmsgexport
+      - u-boot-tools
+
+# Plasma Mobile packages
+# Only installed if variant is plasma-mobile
+{{ if eq $variant "plasma-mobile" }}
+  - action: apt
+    packages:
+      - simplelogin
+      - kwin-wayland
+      - plasma-phone-components
+      - kwin-wayland-backend-drm
+      - plasma-phone-settings
+      - plasma-settings
+      - kinfocenter
+      - plasma-discover
+      - qtvirtualkeyboard-plugin
+      - plasma-nm
+      - telegram-desktop
+      - qml-module-ofono
+      - telepathy-ofono-ril-mc-plugin
+      - pulseaudio-utils
+      - kaidan
+      - koko
+      - plasma-angelfish
+      - glosbit
+      - llsvplayer
+      - vvave
+      - pix
+      - qmlkonsole
+      - index
+      - dbus-x11
+      - sensorfw
+      - upower
+      - kaccounts-mobile
+      - locales
+      - procps
+      - less
+      - sudo
+      - polkit-kde-agent-1
+      - qtvirtualkeyboard-plugin
+      - gpodder-qml
+      - okular-mobile
+      - peruse
+      - kdeconnect-mobile
+      - plasma-workspace-wallpapers
+
+  - action: run
+    description: Set up user account
+    chroot: true
+    script: scripts/setup-user.sh
+
+  - action: run
+    description: Set environment variables for Plasma
+    chroot: true
+    script: scripts/setup-plasma-env.sh
+
+  - action: run
+    description: Set graphical target as default
+    chroot: true
+    script: scripts/set-graphical-target.sh
+{{end}}
+
+  - action: run
+    description: Set hostname
+    chroot: true
+    command: echo debian-device > /etc/hostname
+
+  - action: run
+    description: Compile u-boot script
+    chroot: true
+    label: mkimage
+    command: mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d /boot/boot.txt /boot/boot.scr
+
+  - action: image-partition
+    imagename: {{ $image }}
+    imagesize: 4GB
+    partitiontype: msdos
+    mountpoints:
+      - mountpoint: /
+        partition: ROOTFS
+    partitions:
+      - name: ROOTFS
+        fs: ext4
+        start: 33
+        end: 100%
+        flags: [ boot ]
+
+  - action: filesystem-deploy
+    description: Deploying filesystem into image
+
+  - action: raw
+    origin: filesystem
+    source: /var/tmp/u-boot-devkit.imx
+    offset: 8192
+
+  - action: run
+    description: Create bmap file
+    postprocess: true
+    command: bmaptool create {{ $image }} > {{ $image }}.img.bmap
+
+  - action: run
+    description: Compress image
+    postprocess: true
+    command: gzip -f9 {{ $image }}
