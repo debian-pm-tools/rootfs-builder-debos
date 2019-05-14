@@ -1,8 +1,3 @@
-#!/bin/bash
-
-echo "I: setting up initial environment for Halium..."
-
-cat <<EOF >>/etc/environment
 HOSTNAME=android
 TERM=linux
 ANDROID_CACHE=/cache
@@ -20,4 +15,3 @@ EXTERNAL_STORAGE=/mnt/sdcard
 LANG=en_US.UTF-8
 LANGUAGE=en_US:en
 FLASH_KERNEL_SKIP=true
-EOF

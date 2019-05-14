@@ -14,6 +14,10 @@ actions:
     mirror: https://deb.debian.org/debian
     variant: minbase
 
+  - action: overlay
+    source: halium/overlay
+    destination: /
+
     # Add debian-pm repository and disable gpg check since we don't have a keyring yet.
     # It's still pretty secure thanks to https
   - action: run
@@ -118,11 +122,6 @@ actions:
     description: Set up user account
     chroot: true
     script: scripts/setup-user.sh
-
-  - action: run
-    description: Set environment varialbes for Halium
-    chroot: true
-    script: scripts/halium/setup-halium-env.sh
 
   - action: run
     description: Set environment variables for Plasma
