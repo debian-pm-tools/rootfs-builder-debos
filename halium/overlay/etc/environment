@@ -12,6 +12,4 @@ SHLVL=1
 MKSH=/system/bin/sh
 ANDROID_ROOT=/system
 EXTERNAL_STORAGE=/mnt/sdcard
-LANG=en_US.UTF-8
-LANGUAGE=en_US:en
 FLASH_KERNEL_SKIP=true
