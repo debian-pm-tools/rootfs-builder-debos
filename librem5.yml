@@ -69,7 +69,7 @@ actions:
 
   - action: run
     chroot: true
-    command: echo "deb ttps://ci.puri.sm/ scratch librem5" >> /etc/apt/sources.list.d/debian-pm.list
+    command: echo "deb https://ci.puri.sm/ scratch librem5" >> /etc/apt/sources.list.d/debian-pm.list
 
     # Mainline hardware specific packages
   - action: apt
