@@ -57,10 +57,6 @@ actions:
     chroot: true
     command: echo "deb [trusted=yes] {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
 
-  - action: run
-    chroot: true
-    command: echo "deb [trusted=yes] https://ci.puri.sm/ scratch librem5" >> /etc/apt/sources.list.d/debian-pm.list
-
     # Install the keyring
   - action: apt
     packages:
@@ -70,6 +66,10 @@ actions:
   - action: run
     chroot: true
     command: echo "deb {{ $repo }} {{ $suite }} main devkit" > /etc/apt/sources.list.d/debian-pm.list
+
+  - action: run
+    chroot: true
+    command: echo "deb ttps://ci.puri.sm/ scratch librem5" >> /etc/apt/sources.list.d/debian-pm.list
 
     # Mainline hardware specific packages
   - action: apt
