@@ -130,6 +130,8 @@ actions:
       - peruse
       - kdeconnect-mobile
       - plasma-workspace-wallpapers
+      - marble-maps
+      - spacebar
 
   - action: run
     description: Set up user account
