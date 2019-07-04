@@ -118,6 +118,7 @@ actions:
       - plasma-workspace-wallpapers
       - marble-maps
       - spacebar
+      - kde-config-mobile-networking
 
   - action: run
     description: Set up user account
