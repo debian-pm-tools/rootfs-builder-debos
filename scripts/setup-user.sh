@@ -19,3 +19,4 @@ chown -R $UGID:$UGID /home/$USER
 usermod -a -G ${DEFGROUPS} ${USER}
 
 echo phablet:1234 | chpasswd
+adduser phablet sudo
