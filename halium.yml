@@ -62,6 +62,11 @@ actions:
       - pulseaudio-module-droid
       - pulseaudio-module-droid-glue
       - udev
+      - gstreamer1.0-plugins-bad
+      - gstreamer1.0-libav
+      - gstreamer1.0-omx
+      - gstreamer1.0-droid-tools
+      - nemo-qtmultimedia-plugins
 
   - action: run
     description: Enable halium services
