@@ -168,6 +168,8 @@ actions:
     partitions:
       - name: ROOTFS
         fs: ext4
+        start: 2MB
+        end: 100%
         flags: [ boot ]
 
   - action: filesystem-deploy
