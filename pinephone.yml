@@ -82,6 +82,7 @@ actions:
       - qrtr
       - rpmsgexport
       - u-boot-tools
+      - kmod
 
 # Plasma Mobile packages
 # Only installed if variant is plasma-mobile
@@ -167,8 +168,6 @@ actions:
     partitions:
       - name: ROOTFS
         fs: ext4
-        start: 1M
-        end: 100%
         flags: [ boot ]
 
   - action: filesystem-deploy
