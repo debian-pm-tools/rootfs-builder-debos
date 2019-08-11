@@ -17,7 +17,7 @@ actions:
     # Hardware specific parts
   - action: download
     description: Fetch latest kernel ci build
-    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/bshah/rebase-5.3-rc1/download?job=build
+    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/pine64-linux/download?job=build
     name: kernel
     filename: kernel.zip
     unpack: true
