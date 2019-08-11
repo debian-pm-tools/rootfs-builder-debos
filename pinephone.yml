@@ -17,7 +17,7 @@ actions:
     # Hardware specific parts
   - action: download
     description: Fetch latest kernel ci build
-    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/pine64-linux/download?job=build
+    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/pine64-kernel/download?job=build
     name: kernel
     filename: kernel.zip
     unpack: true
@@ -37,7 +37,7 @@ actions:
 
   - action: download
     description: Fetch u-boot build
-    url: https://gitlab.com/ubports/core/u-boot/-/jobs/artifacts/master/raw/u-boot-sunxi-with-spl-sopine.bin?job=build
+    url: https://gitlab.com/pine64-org/u-boot/-/jobs/artifacts/master/raw/u-boot-sunxi-with-spl-sopine.bin?job=build
     name: u-boot
     filename: u-boot-sunxi-with-spl.bin
     unpack: false
