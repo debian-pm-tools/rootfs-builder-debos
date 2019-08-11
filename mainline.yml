@@ -40,7 +40,7 @@ actions:
       - strace
       - vim
       - dropbear-bin
-      - dropbear-run
+      - dropbear
       - rmtfs
       - qrtr
       - rpmsgexport
