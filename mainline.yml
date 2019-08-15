@@ -91,6 +91,7 @@ actions:
       - marble-maps
       - spacebar
       - kde-config-mobile-networking
+      - qtvirtualkeyboard-gtk
 
   - action: run
     description: Set up user account

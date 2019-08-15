@@ -1,3 +1,4 @@
+
 {{- $architecture := or .architecture "armhf" -}}
 {{ $suite :=  "testing" }}
 {{- $variant := or .variant "minimal" -}}
@@ -124,6 +125,7 @@ actions:
       - gstreamer1.0-omx
       - gstreamer1.0-droid-tools
       - nemo-qtmultimedia-plugins
+      - qtvirtualkeyboard-gtk
 
   - action: run
     description: Set up user account
