@@ -1,0 +1,42 @@
+architecture: {{ .architecture }}
+
+actions:
+    # Add debian-pm repository and disable gpg check since we don't have a keyring yet.
+    # It's still pretty secure thanks to https
+  - action: run
+    description: Prepare installing the keyring
+    chroot: true
+    command: echo "deb [trusted=yes] {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
+
+    # Install the keyring
+  - action: apt
+    packages:
+      - debian-pm-archive-keyring
+
+    # Turn on the gpg check again
+  - action: run
+    description: Add final debian-pm repository
+    chroot: true
+    command: echo "deb {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
+
+  - action: run
+    description: Pin debian pm repository
+    chroot: true
+    script: scripts/pin-debian-pm-repository.sh
+
+  - action: apt
+    packages:
+      - bash-completion
+      - network-manager
+      - vim
+      - ofono
+      - procps
+      - ofono-scripts
+      - locales
+      - less
+      - sudo
+
+  - action: run
+    description: Set hostname
+    chroot: true
+    command: echo debian-device > /etc/hostname

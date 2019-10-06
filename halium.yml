@@ -1,4 +1,3 @@
-
 {{- $architecture := or .architecture "armhf" -}}
 {{ $suite :=  "testing" }}
 {{- $variant := or .variant "minimal" -}}
@@ -19,28 +18,8 @@ actions:
     source: halium/overlay
     destination: /
 
-    # Add debian-pm repository and disable gpg check since we don't have a keyring yet.
-    # It's still pretty secure thanks to https
-  - action: run
-    description: Prepare installing the keyring
-    chroot: true
-    command: echo "deb [trusted=yes] {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
-
-    # Install the keyring
-  - action: apt
-    packages:
-      - debian-pm-archive-keyring
-
-    # Turn on the gpg check again
-  - action: run
-    description: Add final debian-pm repository
-    chroot: true
-    command: echo "deb {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
-
-  - action: run
-    description: Pin debian pm repository
-    chroot: true
-    script: scripts/pin-debian-pm-repository.sh
+  - action: recipe
+    recipe: include/base.yml
 
     # Halium packages
   - action: apt
@@ -52,11 +31,7 @@ actions:
       - libhybris-test
       - lxc
       - lxc-android
-      - network-manager
-      - ofono
-      - ofono-scripts
       - strace
-      - vim
       - hybris-usb
       - dropbear-bin
       - dropbear
@@ -77,76 +52,11 @@ actions:
 # Plasma Mobile packages
 # Only installed if variant is plasma-mobile
 {{ if eq $variant "plasma-mobile" }}
-  - action: apt
-    packages:
-      - simplelogin
-      - kwin-wayland
-      - plasma-phone-components
-      - kwin-wayland-backend-hwcomposer
-      - plasma-phone-settings
-      - plasma-settings
-      - kinfocenter
-      - plasma-discover
-      - qtvirtualkeyboard-plugin
-      - plasma-nm
-      - telegram-desktop
-      - qml-module-ofono
-      - telepathy-ofono-ril-mc-plugin
-      - pulseaudio-utils
-      - koko
-      - kaidan
-      - plasma-angelfish
-      - glosbit
-      - llsvplayer
-      - vvave
-      - pix
-      - qmlkonsole
-      - index
-      - dbus-x11
-      - libsensorfw-hybris
-      - upower
-      - kaccounts-mobile
-      - locales
-      - procps
-      - less
-      - sudo
-      - polkit-kde-agent-1
-      - qtvirtualkeyboard-plugin
-      - gpodder-qml
-      - okular-mobile
-      - peruse
-      - kdeconnect-mobile
-      - plasma-workspace-wallpapers
-      - marble-maps
-      - spacebar
-      - kde-config-mobile-networking
-      - gstreamer1.0-plugins-bad
-      - gstreamer1.0-libav
-      - gstreamer1.0-omx
-      - gstreamer1.0-droid-tools
-      - nemo-qtmultimedia-plugins
-      - qtvirtualkeyboard-gtk
-
-  - action: run
-    description: Set up user account
-    chroot: true
-    script: scripts/setup-user.sh
-
-  - action: run
-    description: Set environment variables for Plasma
-    chroot: true
-    script: scripts/setup-plasma-env.sh
-
-  - action: run
-    description: Set graphical target as default
-    chroot: true
-    script: scripts/set-graphical-target.sh
-{{end}}
-
-  - action: run
-    description: Set hostname
-    chroot: true
-    command: echo debian-device > /etc/hostname
+  - action: recipe
+    recipe: include/plasma-mobile.yml
+    variables:
+      gfx: hwcomposer
+{{ end }}
 
   - action: pack
     file: {{ $image }}
