@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+LOCATION="$(dirname "$(readlink -f "$0")")"
+IMAGE="local/debos"
+
+if ! docker inspect --type=image ${IMAGE} > /dev/null 2>&1; then
+	docker build -t ${IMAGE} ${LOCATION} -f ${LOCATION}/Dockerfile
+fi
+
+docker run --net=host --rm --interactive --tty \
+        --device /dev/kvm \
+        --user $(id -u) \
+        --workdir /recipes \
+        --group-add=$(getent group kvm | cut -d : -f 3) \
+        --mount "type=bind,source=$(pwd),destination=/recipes" --security-opt label=disable ${IMAGE} "$@"
