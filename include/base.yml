@@ -7,7 +7,7 @@ actions:
   - action: run
     description: Prepare installing the keyring
     chroot: true
-    command: echo "deb [trusted=yes] {{ $repo }} {{ $suite }} main" > /etc/apt/sources.list.d/debian-pm.list
+    command: echo "deb [trusted=yes] {{ $repo }} {{ .suite }} main" > /etc/apt/sources.list.d/debian-pm.list
 
     # Install the keyring
   - action: apt
@@ -23,7 +23,7 @@ actions:
   - action: run
     description: Pin debian pm repository
     chroot: true
-    script: scripts/pin-debian-pm-repository.sh
+    script: ../scripts/pin-debian-pm-repository.sh
 
   - action: apt
     packages:

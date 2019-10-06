@@ -55,14 +55,14 @@ actions:
   - action: run
     description: Set up user account
     chroot: true
-    script: scripts/setup-user.sh
+    script: ../scripts/setup-user.sh
 
   - action: run
     description: Set environment variables for Plasma
     chroot: true
-    script: scripts/setup-plasma-env.sh
+    script: ../scripts/setup-plasma-env.sh
 
   - action: run
     description: Set graphical target as default
     chroot: true
-    script: scripts/set-graphical-target.sh
+    script: ../scripts/set-graphical-target.sh
