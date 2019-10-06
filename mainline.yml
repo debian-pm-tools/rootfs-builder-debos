@@ -2,7 +2,6 @@
 {{ $suite :=  "testing" }}
 {{- $variant := or .variant "minimal" -}}
 {{ $image := or .image (printf "debian-mainline-%s-%s-%s.tar.gz" $variant $suite $architecture) }}
-{{ $repo := or .repo "https://repo.kaidan.im/debpm" }}
 
 architecture: {{ $architecture }}
 
@@ -16,6 +15,8 @@ actions:
 
   - action: recipe
     recipe: include/base.yml
+    variables:
+      suite: {{ $suite }}
 
   # Mainline hardware specific packages
   - action: apt
