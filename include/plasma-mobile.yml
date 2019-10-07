@@ -32,7 +32,6 @@ actions:
       - qmlkonsole
       - index
       - dbus-x11
-      - libsensorfw-hybris
       - upower
       - kaccounts-mobile
       - polkit-kde-agent-1
@@ -48,7 +47,6 @@ actions:
       - gstreamer1.0-plugins-bad
       - gstreamer1.0-libav
       - gstreamer1.0-omx
-      - gstreamer1.0-droid-tools
       - nemo-qtmultimedia-plugins
       - qtvirtualkeyboard-gtk
 
