@@ -48,6 +48,7 @@ actions:
       - gstreamer1.0-omx
       - nemo-qtmultimedia-plugins
       - qtvirtualkeyboard-gtk
+      - qmlplane
 
   - action: run
     description: Set up user account
