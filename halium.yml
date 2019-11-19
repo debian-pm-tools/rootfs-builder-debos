@@ -1,5 +1,5 @@
 {{- $architecture := or .architecture "armhf" -}}
-{{ $suite :=  "testing" }}
+{{ $suite :=  printf "testing" }}
 {{- $variant := or .variant "minimal" -}}
 {{ $image := or .image (printf "debian-halium-%s-%s-%s.tar.gz" $variant $suite $architecture) }}
 
