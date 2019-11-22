@@ -6,12 +6,7 @@ actions:
       - simplelogin
       - kwin-wayland
       - plasma-phone-components
-{{ if eq .gfx "hwcomposer" }}
-      - kwin-wayland-backend-hwcomposer
-{{ end }}
-{{ if eq .gfx "drm" }}
-      - kwin-wayland-backend-drm
-{{ end }}
+      - kwin-wayland-backend-{{ .gfx }}
       - plasma-phone-settings
       - plasma-settings
       - kinfocenter
