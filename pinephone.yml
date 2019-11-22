@@ -60,11 +60,6 @@ actions:
     packages:
       - strace
       - vim
-      - dropbear-bin
-      - dropbear
-      - rmtfs
-      - qrtr
-      - rpmsgexport
       - u-boot-tools
       - kmod
 

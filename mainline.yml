@@ -22,8 +22,6 @@ actions:
   - action: apt
     packages:
       - strace
-      - dropbear-bin
-      - dropbear
       - rmtfs
       - qrtr
       - rpmsgexport

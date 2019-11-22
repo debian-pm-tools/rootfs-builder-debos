@@ -34,8 +34,6 @@ actions:
       - lxc-android
       - strace
       - hybris-usb
-      - dropbear-bin
-      - dropbear
       - pulseaudio-module-droid
       - pulseaudio-module-droid-glue
       - udev
