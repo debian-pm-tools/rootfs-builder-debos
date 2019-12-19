@@ -36,15 +36,15 @@ actions:
 
   - action: download
     description: Fetch u-boot build
-    url: https://gitlab.com/pine64-org/u-boot/-/jobs/artifacts/master/raw/u-boot-sunxi-with-spl-sopine.bin?job=build
+    url: https://gitlab.com/pine64-org/u-boot/-/jobs/artifacts/master/raw/u-boot-sunxi-with-spl-pinephone.bin?job=build
     name: u-boot
-    filename: u-boot-sunxi-with-spl.bin
+    filename: u-boot-sunxi-with-spl-pinephone.bin
     unpack: false
 
   - action: overlay
     origin: u-boot
     source: .
-    destination: /var/tmp/u-boot-sunxi-with-spl.bin
+    destination: /var/tmp/u-boot-sunxi-with-spl-pinephone.bin
 
   - action: overlay
     source: pinephone/overlay
@@ -98,7 +98,7 @@ actions:
 
   - action: raw
     origin: filesystem
-    source: /var/tmp/u-boot-sunxi-with-spl.bin
+    source: /var/tmp/u-boot-sunxi-with-spl-pinephone.bin
     offset: 8192
 
   - action: run
