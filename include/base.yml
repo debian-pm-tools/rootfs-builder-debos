@@ -42,6 +42,7 @@ actions:
       - console-setup
       - dropbear-bin
       - dropbear
+      - iproute2
 
   - action: run
     description: Set hostname

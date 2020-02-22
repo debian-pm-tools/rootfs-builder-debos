@@ -3,6 +3,7 @@ architecture: {{ .architecture }}
 actions:
   - action: apt
     packages:
+      - qtwayland5 # Why isn't this installed as a dependency?
       - simplelogin
       - kwin-wayland
       - plasma-phone-components
