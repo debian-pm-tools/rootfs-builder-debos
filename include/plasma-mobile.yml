@@ -3,49 +3,54 @@ architecture: {{ .architecture }}
 actions:
   - action: apt
     packages:
-      - qtwayland5 # Why isn't this installed as a dependency?
-      - simplelogin
-      - kwin-wayland
-      - plasma-phone-components
-      - kwin-wayland-backend-{{ .gfx }}
-      - plasma-phone-settings
-      - plasma-settings
-      - kinfocenter
-      - plasma-discover
-      - qtvirtualkeyboard-plugin
-      - plasma-nm
-      - telegram-desktop
-      - qml-module-ofono
-      - telepathy-ofono-ril-mc-plugin
-      - pulseaudio-utils
-      - koko
-      - kaidan
-      - plasma-angelfish
-      - glosbit
-      - llsvplayer
-      - vvave
-      - pix
-      - qmlkonsole
-      - index
       - dbus-x11
-      - upower
-      - kaccounts-mobile
-      - polkit-kde-agent-1
-      - qtvirtualkeyboard-plugin
+      - glosbit
       - gpodder-qml
-      - okular-mobile
-      - kdeconnect-mobile
-      - plasma-workspace-wallpapers
-      - marble-maps
-      - spacebar
-      - kde-config-mobile-networking
-      - gstreamer1.0-plugins-bad
       - gstreamer1.0-libav
       - gstreamer1.0-omx
+      - gstreamer1.0-plugins-bad
+      - index
+      - kaccounts-mobile
+      - kaidan
+      - kde-config-mobile-networking
+      - kdeconnect-mobile
+      - kinfocenter
+      # For thumbnails
+      - kio-extras
+      - koko
+      # For detecting the screen dimensions
+      - kscreen
+      - kwin-wayland
+      - kwin-wayland-backend-{{ .gfx }}
+      # For storing the wifi passwords
+      - libkf5wallet-bin
+      - llsvplayer
+      - marble-maps
       - nemo-qtmultimedia-plugins
-      - qtvirtualkeyboard-gtk
-      - qmlplane
+      - okular-mobile
+      - pix
+      - plasma-angelfish
+      - plasma-discover
+      - plasma-nm
       - plasma-pa
+      - plasma-phone-components
+      - plasma-phone-settings
+      - plasma-settings
+      - plasma-workspace-wallpapers
+      - polkit-kde-agent-1
+      - pulseaudio-utils
+      - qmlkonsole
+      - qml-module-ofono
+      - qmlplane
+      - qtvirtualkeyboard-gtk
+      - qtvirtualkeyboard-plugin
+      - qtwayland5 # Why isn't this installed as a dependency?
+      - simplelogin
+      - spacebar
+      - telegram-desktop
+      - telepathy-ofono-ril-mc-plugin
+      - upower
+      - vvave
 
   - action: run
     description: Set up user account
