@@ -33,6 +33,7 @@ actions:
       - plasma-discover
       - plasma-nm
       - plasma-pa
+      - plasma-phonebook
       - plasma-phone-components
       - plasma-phone-settings
       - plasma-settings
