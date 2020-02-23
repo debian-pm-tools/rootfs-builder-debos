@@ -16,7 +16,7 @@ actions:
     # Hardware specific parts
   - action: download
     description: Fetch latest kernel ci build
-    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/plamo/pine64-kernel/download?job=build
+    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/pine64-kernel-5.5.y/download?job=build
     name: kernel
     filename: kernel.zip
     unpack: true
