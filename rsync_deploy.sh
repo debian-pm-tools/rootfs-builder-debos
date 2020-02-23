@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-FILES="debian-*.*.gz *.bmap"
+FILES=$(find . -name "debian-*.*.gz" -or -name "*.bmap")
 
 echo $DEPLOY_KEY_PRIVATE | base64 -d | xz -d > ~/.ssh/id_rsa
 echo $DEPLOY_KEY_PUBLIC | base64 -d | xz -d > ~/.ssh/id_rsa.pub
