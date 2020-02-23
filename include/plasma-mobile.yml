@@ -45,6 +45,7 @@ actions:
       - nemo-qtmultimedia-plugins
       - qtvirtualkeyboard-gtk
       - qmlplane
+      - plasma-pa
 
   - action: run
     description: Set up user account
