@@ -55,6 +55,12 @@ actions:
     variables:
       suite: {{ $suite }}
 
+    # pinephone repository
+  - action: run
+    description: Add pinephone repository
+    chroot: true
+    command: echo "deb {{ $repo }} {{ .suite }} pinephone" > /etc/apt/sources.list.d/debian-pm.list
+
   # Mainline hardware specific packages
   - action: apt
     packages:
