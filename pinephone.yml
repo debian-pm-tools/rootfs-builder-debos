@@ -54,12 +54,7 @@ actions:
     recipe: include/base.yml
     variables:
       suite: {{ $suite }}
-
-    # pinephone repository
-  - action: run
-    description: Add pinephone repository
-    chroot: true
-    command: echo "deb {{ $repo }} {{ .suite }} pinephone" > /etc/apt/sources.list.d/debian-pm.list
+      extra_components: "pinephone"
 
   # Mainline hardware specific packages
   - action: apt

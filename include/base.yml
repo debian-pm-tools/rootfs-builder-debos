@@ -1,4 +1,5 @@
 {{ $repo := or .repo "https://repo.kaidan.im/debpm" }}
+{{ $extra_components :=  "" }}
 architecture: {{ .architecture }}
 
 actions:
@@ -18,7 +19,7 @@ actions:
   - action: run
     description: Add final debian-pm repository
     chroot: true
-    command: echo "deb {{ $repo }} {{ .suite }} main" > /etc/apt/sources.list.d/debian-pm.list
+    command: echo "deb {{ $repo }} {{ .suite }} main {{ $extra_components }}" > /etc/apt/sources.list.d/debian-pm.list
 
   - action: run
     description: Pin debian pm repository
