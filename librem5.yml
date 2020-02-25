@@ -106,7 +106,7 @@ actions:
   - action: raw
     origin: filesystem
     source: /var/tmp/u-boot-devkit.imx
-    offset: 8192
+    offset: 2048
 
   - action: run
     description: Create bmap file
