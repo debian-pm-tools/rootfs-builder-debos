@@ -52,6 +52,8 @@ actions:
       - telepathy-ofono-ril-mc-plugin
       - upower
       - vvave
+      - libqt5multimedia5-plugins
+      - gstreamer1.0-plugins-good
 
   - action: run
     description: Set up user account
