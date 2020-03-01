@@ -54,6 +54,7 @@ actions:
       - vvave
       - libqt5multimedia5-plugins
       - gstreamer1.0-plugins-good
+      - calindori
 
   - action: run
     description: Set up user account
