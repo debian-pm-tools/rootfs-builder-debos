@@ -1,0 +1,36 @@
+if test -n "${console}"; then
+  setenv bootargs "${bootargs} console=${console}"
+fi
+
+setenv bootargs @@LINUX_KERNEL_CMDLINE_DEFAULTS@@ ${bootargs} @@LINUX_KERNEL_CMDLINE@@
+
+part uuid ${devtype} ${devnum}:${distro_bootpart} uuid
+setenv bootargs ${bootargs} root=PARTUUID=${uuid} rw rootwait
+
+@@UBOOT_ENV_EXTRA@@
+
+if test -z "${fk_kvers}"; then
+   setenv fk_kvers '@@KERNEL_VERSION@@'
+fi
+
+setenv kernel_addr_z 0x44080000
+part uuid ${devtype} ${devnum}:${distro_bootpart} uuid
+
+setenv fdtpath dtb-${fk_kvers}
+
+printenv
+@@UBOOT_PREBOOT_EXTRA@@
+
+if load ${devtype} ${devnum}:${distro_bootpart} ${kernel_addr_z} ${prefix}vmlinuz-${fk_kvers}; then
+  unzip ${kernel_addr_z} ${kernel_addr_r}
+  echo "Extracted image .."
+  if load ${devtype} ${devnum}:${distro_bootpart} ${fdt_addr_r} ${prefix}${fdtpath} ; then
+    echo "Booting with dt file .."
+    if load ${devtype} ${devnum}:${distro_bootpart} ${ramdisk_addr_r} ${prefix}initrd.img-${fk_kvers}; then
+      echo "Booting with initrd .."
+      booti ${kernel_addr_r} ${ramdisk_addr_r}:${filesize} ${fdt_addr_r};
+    else
+      booti ${kernel_addr_r} - ${fdt_addr_r};
+    fi;
+  fi;
+fi

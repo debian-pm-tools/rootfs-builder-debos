@@ -1,0 +1,5 @@
+Machine: PinePhone
+Boot-Script-Path: /boot/boot.scr
+DTB-Id: sun50i-a64-pinephone.dtb
+U-Boot-Script-Name: bootscr.pine
+Required-Packages: u-boot-tools

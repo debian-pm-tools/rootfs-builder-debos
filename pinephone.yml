@@ -16,7 +16,7 @@ actions:
     # Hardware specific parts
   - action: download
     description: Fetch latest kernel ci build
-    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/plamo/pine64-kernel/download?job=build
+    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/bshah/test/download?job=build
     name: kernel
     filename: kernel.zip
     unpack: true
@@ -74,11 +74,14 @@ actions:
       gfx: drm
 {{end}}
 
+  - action: apt
+    packages:
+      - flash-kernel
+
   - action: run
-    description: Compile u-boot script
+    description: Run flash-kernel
     chroot: true
-    label: mkimage
-    command: mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d /boot/boot.txt /boot/boot.scr
+    command: /usr/sbin/flash-kernel
 
   - action: image-partition
     imagename: {{ $image }}
