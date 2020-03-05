@@ -1,0 +1,7 @@
+This file keeps track of things that need to be done in this repository but for some reason could not yet be finished.
+
+# PinePhone
+
+* delete pinephone/overlay/usr/share/flash-kernel/db/pine.db once upstreamed
+* delete pinephone/overlay/etc/flash-kernel/bootscript/bootscr.pine once compression workaround is not required anymore
+
