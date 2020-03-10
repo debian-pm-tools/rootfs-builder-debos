@@ -1,0 +1,12 @@
+[Unit]
+Description=EP attachable bt keyboard
+After=local-fs.target
+
+[Service]
+RemainAfterExit=yes
+ExecStart=/persistent/bt/ep_keyboard i386
+ExecStop=/bin/bash -c "echo 0 > /sys/kernel/debug/bq24261_charger/ep_kbd_pwr"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

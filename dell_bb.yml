@@ -1,0 +1,116 @@
+{{- $architecture := "i386" -}}
+{{ $suite :=  printf "testing" }}
+{{- $variant := or .variant "minimal" -}}
+{{ $image := or .image (printf "debian-halium-dell-bb-%s-%s-%s.img" $variant $suite $architecture) }}
+
+architecture: {{ $architecture }}
+
+actions:
+  - action: debootstrap
+    suite: {{ $suite }}
+    components:
+      - main
+    mirror: https://deb.debian.org/debian
+    variant: minbase
+
+  - action: overlay
+    source: halium/overlay
+    destination: /
+
+  - action: overlay
+    source: dell_bb/overlay
+    destination: /
+
+  - action: recipe
+    recipe: include/base.yml
+    variables:
+      suite: {{ $suite }}
+      extra_components: "halium8"
+
+    # Halium packages
+  - action: apt
+    packages:
+      - bash-completion
+      - libhybris-dev
+      - libhybris-test
+      - lxc
+      - lxc-android
+      - udev
+
+  - action: run
+    description: Enable halium services
+    chroot: true
+    script: scripts/halium/enable-services.sh
+
+  - action: run
+    description: Enable libhybris
+    chroot: true
+    script: scripts/halium/enable-libhybris.sh
+
+# Plasma Mobile packages
+# Only installed if variant is plasma-mobile
+{{ if eq $variant "plasma-mobile" }}
+  - action: recipe
+    recipe: include/plasma-mobile.yml
+    variables:
+      gfx: hwcomposer
+
+  # Halium specific plasma mobile related packages
+  - action: apt
+    packages:
+      - libsensorfw-hybris
+      - gstreamer1.0-droid-tools
+
+  - action: run
+    chroot: true
+    script: scripts/dell_bb/workarounds.sh
+{{ end }}
+
+  - action: download
+    description: Fetching android-image
+    url: https://archive.kaidan.im/halium/bb/system.img
+    unpack: false
+    name: systemimg
+
+  - action: run
+    description: Create /data
+    chroot: true
+    command: mkdir -p /data
+
+  - action: overlay
+    description: Deploying android image
+    origin: systemimg
+    destination: /data/system.img
+
+  - action: run
+    description: Checking android image
+    chroot: true
+    command: e2fsck -fy /data/system.img
+
+  - action: image-partition
+    imagename: {{ $image }}
+    imagesize: 4GB
+    partitiontype: msdos
+    mountpoints:
+      - mountpoint: /
+        partition: ROOTFS
+    partitions:
+      - name: ROOTFS
+        fs: ext4
+        start: 2MB
+        end: 100%
+        flags: [ boot ]
+
+  - action: filesystem-deploy
+    setup-fstab: false # We manage the fstab file outselves
+    description: Deploying filesystem into image
+
+  - action: run
+    description: Create bmap file
+    postprocess: true
+    command: bmaptool create {{ $image }} > {{ $image }}.bmap
+
+  - action: run
+    description: Compress image
+    postprocess: true
+    command: gzip -f9 {{ $image }}
