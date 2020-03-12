@@ -36,9 +36,9 @@ actions:
 
   - action: download
     description: Fetch u-boot build
-    url: https://arm01.puri.sm/job/u-boot_builds/job/uboot_devkit_build/lastSuccessfulBuild/artifact/output/uboot-devkit/u-boot-devkit.imx
+    url: https://arm01.puri.sm/job/u-boot_builds/job/uboot_devkit_build/lastSuccessfulBuild/artifact/output/uboot-devkit/devkit-boot.img
     name: u-boot
-    filename: u-boot-devkit.imx
+    filename: devkit-boot.img
     unpack: false
 
   - action: overlay
@@ -80,11 +80,14 @@ actions:
       gfx: drm
 {{end}}
 
+  - action: apt
+    packages:
+      - flash-kernel
+
   - action: run
-    description: Compile u-boot script
+    description: Hack kernel
     chroot: true
-    label: mkimage
-    command: mkimage -A arm -O linux -T script -C none -n "U-Boot boot script" -d /boot/boot.txt /boot/boot.scr
+    script: scripts/librem5/extract_kernel.sh
 
   - action: image-partition
     imagename: {{ $image }}
@@ -105,7 +108,7 @@ actions:
 
   - action: raw
     origin: filesystem
-    source: /var/tmp/u-boot-devkit.imx
+    source: /var/tmp/devkit-boot.img
     offset: 2048
 
   - action: run

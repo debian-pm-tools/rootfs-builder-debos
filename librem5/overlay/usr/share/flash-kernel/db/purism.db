@@ -1,0 +1,14 @@
+Machine: Purism Librem 5 devkit
+Kernel-Flavors: any
+DTB-Id: imx8mq-librem5-devkit.dtb
+U-Boot-Script-Name: bootscr.uboot-generic
+Boot-Script-Path: /boot/boot.scr
+Required-Packages: u-boot-tools
+
+Machine: Purism Librem 5
+Kernel-Flavors: any
+DTB-Id: imx8mq-librem5.dtb
+U-Boot-Script-Name: bootscr.uboot-generic
+Boot-Script-Path: /boot/boot.scr
+Required-Packages: u-boot-tools
+
