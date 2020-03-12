@@ -1,4 +1,4 @@
-{{- $architecture := or .architecture "arm64" -}}
+{{- $architecture := "arm64" -}}
 {{ $suite :=  "testing" }}
 {{- $variant := or .variant "minimal" -}}
 {{ $image := or .image (printf "debian-pinephone-%s-%s-%s.img" $variant $suite $architecture) }}
