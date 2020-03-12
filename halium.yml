@@ -25,7 +25,6 @@ actions:
     # Halium packages
   - action: apt
     packages:
-      - bash-completion
       - gdb
       - libc6-dbg
       - libhybris-dev

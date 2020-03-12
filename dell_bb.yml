@@ -30,7 +30,6 @@ actions:
     # Halium packages
   - action: apt
     packages:
-      - bash-completion
       - libhybris-dev
       - libhybris-test
       - lxc
