@@ -1,8 +1,8 @@
-sudo: required
+os: linux
 dist: bionic
-language: minimal
+language: shell
 
-matrix:
+jobs:
   include:
     # command line only images
     - env: ARCH=armhf VARIANT=minimal RECIPE=halium
@@ -39,7 +39,7 @@ script:
 
 deploy:
   provider: script
-  skip_cleanup: true
+  cleanup: false
   script: ./rsync_deploy.sh
   on:
     branch: master
