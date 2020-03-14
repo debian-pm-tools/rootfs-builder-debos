@@ -32,7 +32,7 @@ before_install:
   - sudo apt-get update
 
 install:
-  - sudo apt-get install debos bmap-tools dosfstools e2fsprogs zsync -y
+  - sudo apt-get install debos bmap-tools dosfstools e2fsprogs zsync linux-image-amd64 -y
 
 script:
   - sudo ./bin/debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
