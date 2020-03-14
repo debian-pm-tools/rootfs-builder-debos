@@ -30,6 +30,7 @@ before_install:
   - sudo cp /usr/share/keyrings/debian-archive-keyring.gpg /etc/apt/trusted.gpg.d/debian-archive-keyring.gpg
   - echo "deb http://deb.debian.org/debian testing main" |sudo tee -a /etc/apt/sources.list
   - sudo apt-get update
+  - rm /lib/modules/* -r
 
 install:
   - sudo apt-get install debos bmap-tools dosfstools e2fsprogs zsync linux-image-amd64 -y
