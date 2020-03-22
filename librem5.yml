@@ -16,7 +16,7 @@ actions:
     # Hardware specific parts
   - action: download
     description: Fetch latest kernel ci build
-    url: https://arm01.puri.sm/job/Kernel_builds/job/kernel_linux-next_imx8-linux-next-librem5/lastSuccessfulBuild/artifact/output/*zip*/output.zip
+    url: https://arm01.puri.sm/job/Kernel_builds/job/kernel_linux-next_imx8-next-librem5/lastSuccessfulBuild/artifact/*zip*/archive.zip
     name: kernel
     filename: kernel.zip
     unpack: true
