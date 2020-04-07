@@ -32,7 +32,7 @@ actions:
     chroot: true
     description: Install kernel
     label: dpkg
-    command: dpkg -i /var/tmp/output/*.deb && rm /var/tmp/* -r
+    command: dpkg -i /var/tmp/archive/output/*.deb && rm /var/tmp/* -r
 
   - action: download
     description: Fetch u-boot build
