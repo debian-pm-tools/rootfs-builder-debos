@@ -1,5 +1,5 @@
-Machine: PinePhone
+Machine: Pine64 PinePhone Braveheart (1.1)
 Boot-Script-Path: /boot/boot.scr
-DTB-Id: sun50i-a64-pinephone.dtb
+DTB-Id: allwinner/sun50i-a64-pinephone-1.1.dtb
 U-Boot-Script-Name: bootscr.pine
 Required-Packages: u-boot-tools
