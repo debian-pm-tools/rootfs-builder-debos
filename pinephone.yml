@@ -74,6 +74,12 @@ actions:
       gfx: drm
 {{end}}
 
+  - action: run
+    description: Enable the eg25 service
+    chroot: true
+    label: eg25
+    command: systemctl enable eg25
+
   - action: apt
     packages:
       - flash-kernel
