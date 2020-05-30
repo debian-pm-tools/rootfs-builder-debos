@@ -36,7 +36,7 @@ actions:
 
   - action: download
     description: Fetch u-boot build
-    url: https://gitlab.com/pine64-org/u-boot/-/jobs/artifacts/master/raw/u-boot-sunxi-with-spl-pinephone.bin?job=build
+    url: https://gitlab.com/pine64-org/crust-meta/-/jobs/artifacts/master/raw/u-boot-sunxi-with-spl-pinephone.bin?job=build
     name: u-boot
     filename: u-boot-sunxi-with-spl-pinephone.bin
     unpack: false
