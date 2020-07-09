@@ -99,7 +99,7 @@ actions:
     partitions:
       - name: ROOTFS
         fs: ext4
-        start: 2MB
+        start: 8M
         end: 100%
         flags: [ boot ]
 
