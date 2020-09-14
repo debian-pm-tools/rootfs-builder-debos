@@ -10,7 +10,6 @@ actions:
       - gstreamer1.0-omx
       - gstreamer1.0-plugins-bad
       - index
-      - kaccounts-mobile
       - kaidan
       - kde-config-mobile-networking
       - kdeconnect-mobile
