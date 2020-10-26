@@ -26,7 +26,7 @@ install:
   - sudo apt-get install debos bmap-tools dosfstools e2fsprogs zsync -y
 
 script:
-  - sudo ./bin/debos -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
+  - sudo ./bin/debos --memory=4G -t variant:${VARIANT} -t architecture:${ARCH} ${RECIPE}.yml
 
 deploy:
   provider: script
