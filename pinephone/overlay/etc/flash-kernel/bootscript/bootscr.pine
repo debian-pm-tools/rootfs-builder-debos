@@ -16,15 +16,13 @@ fi
 setenv kernel_addr_z 0x44080000
 part uuid ${devtype} ${devnum}:${distro_bootpart} uuid
 
-setenv fdtpath dtb-${fk_kvers}
-
 printenv
 @@UBOOT_PREBOOT_EXTRA@@
 
 if load ${devtype} ${devnum}:${distro_bootpart} ${kernel_addr_z} ${prefix}vmlinuz-${fk_kvers}; then
   unzip ${kernel_addr_z} ${kernel_addr_r}
   echo "Extracted image .."
-  if load ${devtype} ${devnum}:${distro_bootpart} ${fdt_addr_r} ${prefix}${fdtpath} ; then
+  if load ${devtype} ${devnum}:${distro_bootpart} ${fdt_addr_r} ${prefix}/dtbs/${fk_kvers}/${fdtfile} ; then
     echo "Booting with dt file .."
     if load ${devtype} ${devnum}:${distro_bootpart} ${ramdisk_addr_r} ${prefix}initrd.img-${fk_kvers}; then
       echo "Booting with initrd .."
