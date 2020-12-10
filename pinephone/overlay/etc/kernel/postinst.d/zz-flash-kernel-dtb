@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# see Chapter 8 of Debian Linux Kernel Handbook
+
+set -ex
+
+# this script is used as postinst.d and postrm.d script; this is used to
+# differentiate between the two
+self="$0"
+
+# see 8.1, Kernel hooks
+abi="$1"
+# ignored
+_vmlinuz="${2:-/boot/vmlinuz-$abi}"
+set -- $DEB_MAINT_PARAMS
+action="$1"
+action="${action#\'}"
+action="${action%\'}"
+# ignored
+_version="$2"
+_version="${version#\'}"
+_version="${version%\'}"
+
+# only call flash-kernel once on install, upgrade, removal or purge
+# XXX apparently kernel postinst doesn't always pass maintainer scripts
+# arguments
+export FK_KERNEL_HOOK_SCRIPT="$(basename "$(dirname "$self")")"
+case "$FK_KERNEL_HOOK_SCRIPT/$action" in
+  postinst.d/configure|postinst.d/|postrm.d/remove|postrm.d/)
+    mkdir -p /boot/dtbs/$abi/allwinner
+    cp /usr/lib/linux-image-$abi/allwinner/* "/boot/dtbs/$abi/allwinner/"
+  ;;
+esac
+
