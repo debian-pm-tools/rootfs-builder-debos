@@ -13,26 +13,21 @@ actions:
     mirror: https://deb.debian.org/debian
     variant: minbase
 
+  - action: recipe
+    recipe: include/base.yml
+    variables:
+      suite: {{ $suite }}
+      extra_components: "pinephone"
+
     # Hardware specific parts
-  - action: download
-    description: Fetch latest kernel ci build
-    url: https://gitlab.com/pine64-org/linux/-/jobs/artifacts/pine64-kernel-5.7.y/download?job=build
-    name: kernel
-    filename: kernel.zip
-    unpack: true
-    compression: zip
-
-  - action: overlay
-    origin: kernel
-    source: .
-    destination: /var/tmp/
-
   - action: run
-    origin: kernel
+    description: Add pine64 repo for kernel build
     chroot: true
-    description: Install kernel
-    label: dpkg
-    command: dpkg -i $(ls /var/tmp/*.deb | grep -v dbg) && rm /var/tmp/* -r
+    command: echo "deb http://repo.plasma-mobile.org/pine64/ focal main" > /etc/apt/sources.list.d/pine64.list
+
+  - action: apt
+    packages:
+      - linux-image-5.9.8-pine64
 
   - action: download
     description: Fetch u-boot build
@@ -49,12 +44,6 @@ actions:
   - action: overlay
     source: pinephone/overlay
     destination: /
-
-  - action: recipe
-    recipe: include/base.yml
-    variables:
-      suite: {{ $suite }}
-      extra_components: "pinephone"
 
   # Mainline hardware specific packages
   - action: apt
