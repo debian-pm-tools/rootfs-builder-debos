@@ -42,8 +42,6 @@ actions:
       - qmlkonsole
       - qml-module-ofono
       - qmlplane
-      - qtvirtualkeyboard-gtk
-      - qtvirtualkeyboard-plugin
       - qtwayland5 # Why isn't this installed as a dependency?
       - simplelogin
       - spacebar
