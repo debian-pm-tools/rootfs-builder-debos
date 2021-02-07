@@ -4,7 +4,6 @@ actions:
   - action: apt
     packages:
       - dbus-x11
-      - glosbit
       - gpodder-qml
       - gstreamer1.0-libav
       - gstreamer1.0-omx
