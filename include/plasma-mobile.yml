@@ -51,6 +51,8 @@ actions:
       - libqt5multimedia5-plugins
       - gstreamer1.0-plugins-good
       - calindori
+      - buho
+      - plasma-dialer
 
   - action: run
     description: Set up user account
