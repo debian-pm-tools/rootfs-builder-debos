@@ -6,7 +6,6 @@ actions:
       - dbus-x11
       - gpodder-qml
       - gstreamer1.0-libav
-      - gstreamer1.0-omx
       - gstreamer1.0-plugins-bad
       - index
       - kaidan

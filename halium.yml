@@ -60,6 +60,7 @@ actions:
     packages:
       - libsensorfw-hybris
       - gstreamer1.0-droid-tools
+      - gstreamer1.0-omx
 {{ end }}
 
   - action: pack
