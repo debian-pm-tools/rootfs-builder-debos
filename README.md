@@ -7,8 +7,8 @@ To build one of the recipes simply use `debos recipe.yml`
 Both, the mainline and the halium recipe, support installing Plasma Mobile in the image.
 You can build the Plasma Mobile variant like this:
 
-```debos recipe.yml -t variant:"plasma-mobile"```
+```debos --memory=4G --scratchsize=8G -t variant:plasma-mobile recipe.yml"```
 
 The images can be built for different architectures
 
-```debos recipe.yml -t architecture:"arm64"```
+```debos --memory=4G --scratchsize=8G -t architecture:arm64```
