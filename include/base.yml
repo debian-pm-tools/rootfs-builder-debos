@@ -26,11 +26,6 @@ actions:
     chroot: true
     command: echo "deb https://jbb.ghsq.ga/debpm {{ .suite }} main {{ $extra_components }}" >> /etc/apt/sources.list.d/debian-pm.list
 
-  - action: run
-    description: Pin debian pm repository
-    chroot: true
-    script: ../scripts/pin-debian-pm-repository.sh
-
   - action: apt
     packages:
       - bash-completion
@@ -49,6 +44,7 @@ actions:
       - dropbear-bin
       - dropbear
       - iproute2
+      - debian-pm-repository
 
   - action: run
     description: Set hostname
