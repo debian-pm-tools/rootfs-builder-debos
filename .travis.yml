@@ -4,14 +4,7 @@ language: shell
 
 jobs:
   include:
-    # command line only images
-    - env: ARCH=armhf VARIANT=minimal RECIPE=halium
-    - env: ARCH=arm64 VARIANT=minimal RECIPE=halium
-    # Plasma Mobile images
-    - env: ARCH=armhf VARIANT=plasma-mobile RECIPE=halium
     - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=pinephone
-#    - env: ARCH=arm64 VARIANT=plasma-mobile RECIPE=librem5
-    - env: ARCH=i386 VARIANT=plasma-mobile RECIPE=dell_bb
 
 before_install:
   # Reset sources list (travis default ppas are often broken)
