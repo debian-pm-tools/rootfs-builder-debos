@@ -52,6 +52,8 @@ actions:
       - calindori
       - buho
       - plasma-dialer
+      - alligator
+      - ktrip
 
   - action: run
     description: Set up user account
