@@ -1,4 +1,4 @@
-{{ $repo := or .repo "https://repo.kaidan.im/debpm" }}
+{{ $repo := or .repo "https://jbb.ghsq.ga/debpm" }}
 {{ $extra_components := or .extra_components "" }}
 architecture: {{ .architecture }}
 
@@ -20,11 +20,6 @@ actions:
     description: Add final debian-pm repository
     chroot: true
     command: echo "deb {{ $repo }} {{ .suite }} main {{ $extra_components }}" > /etc/apt/sources.list.d/debian-pm.list
-
-  - action: run
-    description: Add temporary overlay repository
-    chroot: true
-    command: echo "deb https://jbb.ghsq.ga/debpm {{ .suite }} main {{ $extra_components }}" >> /etc/apt/sources.list.d/debian-pm.list
 
   - action: apt
     packages:
