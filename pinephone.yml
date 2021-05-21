@@ -75,6 +75,11 @@ actions:
       - flash-kernel
 
   - action: run
+    description: Generate initramfs
+    chroot: true
+    command: update-initramfs -u
+
+  - action: run
     description: Run flash-kernel
     chroot: true
     command: /usr/sbin/flash-kernel
